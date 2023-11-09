@@ -37,7 +37,7 @@ type CustomColors = {
 
 const colors: CustomColors = {
   primary: {
-    default_gen: '#4850FF',
+    default_gen: '#6FD54D',
   },
   secondary: {
     default_gen: '#7B61FF',
@@ -58,6 +58,34 @@ const colors: CustomColors = {
       500: '#F9BC00',
       600: '#dfa900',
       700: '#c69500',
+    },
+  },
+  dark: {
+    default: {
+      50: '#000000',
+      100: '#000000',
+      200: '#000000',
+      300: '#000000',
+      400: '#D1D4DD',
+      500: '#000000',
+      600: '#111111',
+      700: '#151515',
+      800: '#151515',
+      900: '#151515',
+    },
+  },
+  light: {
+    default: {
+      50: '#FFFFFF',
+      100: '#FFFFFF',
+      200: '#FFFFFF',
+      300: '#FFFFFF',
+      400: '#FFFFFF',
+      500: '#FFFFFF',
+      600: '#FEFEFE',
+      700: '#EEEEEE',
+      800: '#EEEEEE',
+      900: '#EEEEEE',
     },
   },
   gray: {

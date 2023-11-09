@@ -1,4 +1,4 @@
-import { Flex, IconButton, Image } from '@chakra-ui/react';
+import { Button, Flex, Image, Text } from '@chakra-ui/react';
 import { useDisclosure } from '@chakra-ui/react';
 
 import { LAYOUT } from '@/constants/layout';
@@ -32,24 +32,12 @@ const HomeHeader = ({ variant = 'light' }: HomeHeaderProps) => {
         transition="all 0.3s"
         w="100%"
         h={LAYOUT.HEADER.HEIGHT}
-        {...cssByVariant.header}
+        bgColor="white"
       >
-        <Image //
-          alt={MY_IMAGES.ICONS.LOGO.alt}
-          src={MY_IMAGES.ICONS.LOGO.src}
-          w="74px"
-          cursor="pointer"
-        />
-        <Image alt="menu" src="/images/header/menu.png" w="24px" h="24px" />
-        <IconButton //
-          size={'xs'}
-          color={cssByVariant.pointColor}
-          icon={<MenuIcon w="24px" h="24px" />}
-          onClick={onOpen}
-          cursor="pointer"
-          bg="transparent"
-          aria-label="btn-toggle-drawer"
-        />
+        <Image alt="logo" src="/images/logo.png" w="287px" h="48px" />
+        <Button colorScheme="dark" w="130px" borderRadius="full">
+          <Text>문의하기</Text>
+        </Button>
       </Flex>
       <HomeHeaderDrawer
         isOpen={isOpen}

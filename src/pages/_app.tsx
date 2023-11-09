@@ -9,6 +9,9 @@ import withAppProvider from '@/hocs/withAppProvider';
 
 import { config as SEO } from '@/configs/seo/config';
 
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
+
 function App({ Component, pageProps }: any) {
   return (
     <>

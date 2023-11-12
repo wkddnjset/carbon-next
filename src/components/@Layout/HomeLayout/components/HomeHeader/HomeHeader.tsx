@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { Button, Flex, Image, Text } from '@chakra-ui/react';
 import { useDisclosure } from '@chakra-ui/react';
 
@@ -34,7 +36,14 @@ const HomeHeader = ({ variant = 'light' }: HomeHeaderProps) => {
         h={LAYOUT.HEADER.HEIGHT}
         bgColor="white"
       >
-        <Image alt="logo" src="/images/logo.png" w="287px" h="48px" />
+        <Link href="/">
+          <Image
+            alt="logo"
+            src="/images/logo.png"
+            w={{ base: '210px', sm: '287px' }}
+          />
+        </Link>
+
         <Button colorScheme="dark" w="130px" borderRadius="full">
           <Text>문의하기</Text>
         </Button>

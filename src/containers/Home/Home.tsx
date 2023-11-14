@@ -52,7 +52,13 @@ function Home() {
   return (
     <Box>
       <Flex h="80vh" direction="column" justifyContent="center">
-        <Image src="/images/main/bg.png" pos="absolute" top="0px" right="0px" />
+        <Image
+          src="/images/main/bg.png"
+          pos="absolute"
+          top="0px"
+          right="0px"
+          maxW="65%"
+        />
         <Box px="24px" zIndex={9}>
           <Text as="h1" fontSize="56px" fontWeight="bold">
             온실가스 감축

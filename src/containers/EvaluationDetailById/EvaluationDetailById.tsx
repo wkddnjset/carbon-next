@@ -73,7 +73,7 @@ function EvaluationDetailById({
               <Box
                 key={idx}
                 bgColor="#F5F5F5"
-                w="calc(50% - 10px)"
+                w={{ base: 'calc(50% - 5px)', sm: 'calc(50% - 10px)' }}
                 p="10px"
                 borderRadius="full"
                 h="70px"

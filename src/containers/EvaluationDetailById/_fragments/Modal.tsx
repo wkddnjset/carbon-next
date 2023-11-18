@@ -16,7 +16,7 @@ import {
 
 import { useEvaluationDetailPageContext } from '@/contexts/pages/evaluationDetail/useEvaluationDetailPageContext';
 
-function ModalComponent({ isOpen, onOpen, onClose }: any) {
+function ModalComponent({ id, isOpen, onOpen, onClose }: any) {
   const additionIsCorrect = useEvaluationDetailPageContext(
     (ctx) => ctx.state.additionIsCorrect,
   );
@@ -56,7 +56,7 @@ function ModalComponent({ isOpen, onOpen, onClose }: any) {
               colorScheme="dark"
               size="lg"
               borderRadius="full"
-              onClick={() => Router.push('/result')}
+              onClick={() => Router.push(`/result/${id}`)}
             >
               감축량 확인하기
             </Button>

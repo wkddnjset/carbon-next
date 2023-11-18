@@ -4,6 +4,6 @@ export const ROUTES = {
   MAIN: '/',
   LOGIN: { MAIN: '/login' },
   MORE: { MAIN: '/more' },
-  RESULT: { MAIN: '/result' },
+  RESULT: { DYNAMIC_ID: { MAIN: '/result/[id]' }, MAIN: '/result' },
   SOCIAL: { CALLBACK: '/social/callback' },
 };

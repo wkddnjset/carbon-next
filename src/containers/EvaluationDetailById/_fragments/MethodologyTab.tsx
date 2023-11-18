@@ -111,7 +111,7 @@ function MethodologyTab({ data }: any) {
                           )}
                           <Td>{item.id}</Td>
                           <Td maxW="550px" minW="550px">
-                            <Text whiteSpace="initial">{item.title}</Text>
+                            <Text whiteSpace="pre-line">{item.title}</Text>
                           </Td>
                           <Td>
                             <HStack
@@ -187,7 +187,7 @@ function MethodologyTab({ data }: any) {
                                   <AccordionIcon ml="10px" />
                                 </AccordionButton>
                                 <AccordionPanel p="20px">
-                                  <Text whiteSpace="initial">
+                                  <Text whiteSpace="pre-line">
                                     {item.comment}
                                   </Text>
                                 </AccordionPanel>

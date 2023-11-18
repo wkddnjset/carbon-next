@@ -8,8 +8,6 @@ const baseStyle = defineStyle({
     sm: '780px',
     md: '980px',
     lg: '1280px',
-    xl: '1480px',
-    '2xl': '1780px',
   },
   px: '0',
 });

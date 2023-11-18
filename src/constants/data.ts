@@ -9,6 +9,7 @@ export const DATA = [
     icon: '/images/main/icon_1.png',
     methodology: [
       {
+        id: 1,
         title: '적용조건',
         result_title: '적용 조건 평가 결과',
         question: [
@@ -62,6 +63,7 @@ export const DATA = [
         ],
       },
       {
+        id: 2,
         title: '적용불가\n조건',
         result_title: '적용 불가조건 평가 결과',
         question: [
@@ -91,6 +93,7 @@ export const DATA = [
     ],
     additional: [
       {
+        id: 1,
         title: '법적.제도적\n추가성 평가',
         result_title: '법적.제도적 추가성 평가 결과',
         comment: `① 법적제도적 추가성 평가 : 관련된 법령 및 규정의 만족여부를 자가 판단
@@ -150,6 +153,7 @@ export const DATA = [
     icon: '/images/main/icon_2.png',
     methodology: [
       {
+        id: 1,
         title: '적용조건',
         result_title: '적용 조건 평가 결과',
         question: [
@@ -180,6 +184,7 @@ export const DATA = [
         ],
       },
       {
+        id: 2,
         title: '적용불가\n조건',
         result_title: '적용 불가조건 평가 결과',
         question: [
@@ -212,6 +217,7 @@ export const DATA = [
     ],
     additional: [
       {
+        id: 1,
         title: '법적.제도적\n추가성 평가',
         result_title: '적용조건평가',
         comment: `① 법적제도적 추가성 평가 : 관련된 법령 및 규정의 만족여부를 자가 판단
@@ -284,6 +290,7 @@ export const DATA = [
     icon: '/images/main/icon_3.png',
     methodology: [
       {
+        id: 1,
         title: '공통적용\n조건',
         result_title: '공통 적용 조건 평가 결과',
         question: [
@@ -305,6 +312,7 @@ export const DATA = [
         ],
       },
       {
+        id: 2,
         title: '대체적용\n조건',
         result_title: '대체 적용 조건 평가 결과',
         question: [
@@ -350,6 +358,7 @@ export const DATA = [
         ],
       },
       {
+        id: 3,
         title: '신규도입\n적용조건',
         result_title: ' 신규 도입 적용 조건 평가 결과',
         question: [
@@ -371,6 +380,7 @@ export const DATA = [
         ],
       },
       {
+        id: 4,
         title: '적용불가\n조건',
         result_title: '적용 불가조건 평가 결과',
         question: [
@@ -418,6 +428,7 @@ export const DATA = [
     ],
     additional: [
       {
+        id: 1,
         title: '법적.제도적\n추가성 평가',
         result_title: '법적∙제도적 추가성 평가 결과',
         comment: `① 법적제도적 추가성 평가 : 관련된 법령 및 규정의 만족여부를 자가 판단
@@ -489,6 +500,7 @@ export const DATA = [
         ],
       },
       {
+        id: 2,
         title: '방법론\n추가성 평가',
         result_title: '방법론 추가성 평가 결과',
         comment: `② 방법론 추가성 평가 : 사업경계에 따라 사업시작일 기준 전기차량 보급 통계를 기준으로 
@@ -520,6 +532,7 @@ export const DATA = [
     icon: '/images/main/icon_4.png',
     methodology: [
       {
+        id: 1,
         title: '적용조건',
         result_title: ' 적용 조건 평가 결과',
         question: [
@@ -564,6 +577,7 @@ export const DATA = [
         ],
       },
       {
+        id: 2,
         title: '적용불가\n조건',
         result_title: '적용 불가조건 평가 결과',
         question: [
@@ -611,6 +625,7 @@ export const DATA = [
     ],
     additional: [
       {
+        id: 1,
         title: '법적.제도적\n추가성 평가',
         result_title: '법적∙제도적 추가성 평가 결과',
         comment: `① 법적제도적 추가성 평가 : 관련된 법령 및 규정의 만족여부를 자가 판단
@@ -666,6 +681,7 @@ export const DATA = [
         ],
       },
       {
+        id: 2,
         title: '방법론\n추가성 평가',
         result_title: '방법론 추가성 평가 결과',
         comment: `② 방법론 추가성 평가 : 사업경계에 따라 사업시작일 기준 저공해자동차 보급 통계를 기준으로 
@@ -691,6 +707,7 @@ export const DATA = [
     icon: '/images/main/icon_5.png',
     methodology: [
       {
+        id: 1,
         title: '적용조건',
         result_title: '적용 조건 평가 결과',
         question: [
@@ -745,6 +762,7 @@ export const DATA = [
         ],
       },
       {
+        id: 2,
         title: '적용불가\n조건',
         result_title: '적용 불가조건 평가 결과',
         question: [
@@ -784,6 +802,7 @@ export const DATA = [
     ],
     additional: [
       {
+        id: 1,
         title: '법적.제도적\n추가성 평가',
         result_title: '법적∙제도적 추가성 평가 결과',
         comment: `① 법적제도적 추가성 평가 : 관련된 법령 및 규정의 만족여부를 자가 판단
@@ -855,6 +874,7 @@ export const DATA = [
         ],
       },
       {
+        id: 2,
         title: '방법론\n추가성 평가',
         result_title: '방법론 추가성 평가 결과',
         comment: `② 방법론 추가성 평가 : 사업경계에 따라 사업시작일 기준 수소전기차량 보급 통계를 기준으로 
@@ -886,6 +906,7 @@ export const DATA = [
     icon: '/images/main/icon_6.png',
     methodology: [
       {
+        id: 1,
         title: '적용조건',
         result_title: '적용 조건 평가 결과',
         question: [
@@ -940,6 +961,7 @@ export const DATA = [
         ],
       },
       {
+        id: 2,
         title: '적용불가\n조건',
         result_title: '적용 불가조건 평가 결과',
         question: [
@@ -985,6 +1007,7 @@ export const DATA = [
     ],
     additional: [
       {
+        id: 1,
         title: '법적.제도적\n추가성 평가',
         result_title: '법적∙제도적 추가성 평가 결과',
         comment: `① 법적제도적 추가성 평가 : 관련된 법령 및 규정의 만족여부를 자가 판단
@@ -1034,6 +1057,7 @@ export const DATA = [
         ],
       },
       {
+        id: 2,
         title: '방법론\n추가성 평가',
         result_title: '방법론 추가성 평가 결과',
         comment: `② 방법론 추가성 평가 : 일반적 관습 장애요인, 상업적/법적 장애요인, 대상모집 장애요인 또는 기타 장애요인 중 하나 이상의 존재여부를 확인하고 만족여부를 자가 판단`,
@@ -1076,6 +1100,7 @@ export const DATA = [
     icon: '/images/main/icon_7.png',
     methodology: [
       {
+        id: 1,
         title: '적용조건',
         result_title: '적용 조건 평가 결과',
         question: [
@@ -1090,6 +1115,7 @@ export const DATA = [
         ],
       },
       {
+        id: 2,
         title: '적용불가\n조건',
         result_title: '적용 불가조건 평가 결과',
         question: [
@@ -1113,6 +1139,7 @@ export const DATA = [
     ],
     additional: [
       {
+        id: 1,
         title: '법적.제도적\n추가성 평가',
         result_title: '법적∙제도적 추가성 평가 결과',
         comment: `①  법적제도적 추가성 평가 : 관련된 법령 및 규정의 만족여부를 자가 판단
@@ -1173,6 +1200,7 @@ export const DATA = [
     icon: '/images/main/icon_8.png',
     methodology: [
       {
+        id: 1,
         title: '적용조건',
         result_title: '적용 조건 평가 결과',
         question: [
@@ -1235,6 +1263,7 @@ export const DATA = [
         ],
       },
       {
+        id: 2,
         title: '적용불가\n조건',
         result_title: '적용 불가조건 평가 결과',
         question: [
@@ -1282,6 +1311,7 @@ export const DATA = [
     ],
     additional: [
       {
+        id: 1,
         title: '법적.제도적\n추가성 평가',
         result_title: '법적∙제도적 추가성 평가 결과',
         comment: `① 1. 【외부사업 타당성 평가 및 감축량 인증에 관한 지침】 
@@ -1340,6 +1370,7 @@ export const DATA = [
     icon: '/images/main/icon_9.png',
     methodology: [
       {
+        id: 1,
         title: '적용조건',
         result_title: '적용 조건 평가 결과',
         question: [
@@ -1420,6 +1451,7 @@ export const DATA = [
     ],
     additional: [
       {
+        id: 1,
         title: '법적.제도적\n추가성 평가',
         result_title: '법적∙제도적 추가성 평가 결과',
         comment: `① 법적제도적 추가성 평가 : 관련된 법령 및 규정의 만족여부를 자가 판단
@@ -1469,6 +1501,7 @@ export const DATA = [
         ],
       },
       {
+        id: 2,
         title: '방법론\n추가성 평가',
         result_title: '방법론 추가성 평가 결과',
         comment: `② 방법론 추가성 평가 : 사업경계에 따라 사업시작일 기준 기술적인 관점으로 도로 운송이 현실적인 선택지임을 증명해야 하며 이에 대해 자가판단`,
@@ -1494,6 +1527,7 @@ export const DATA = [
     icon: '/images/main/icon_9.png',
     methodology: [
       {
+        id: 1,
         title: '적용조건',
         result_title: '적용 조건 평가 결과',
         question: [
@@ -1571,6 +1605,7 @@ export const DATA = [
     ],
     additional: [
       {
+        id: 1,
         title: '법적.제도적\n추가성 평가',
         result_title: '법적∙제도적 추가성 평가 결과',
         comment: `① 법적제도적 추가성 평가 : 관련된 법령 및 규정의 만족여부를 자가 판단
@@ -1620,6 +1655,7 @@ export const DATA = [
         ],
       },
       {
+        id: 2,
         title: '방법론\n추가성 평가',
         result_title: '방법론 추가성 평가 결과',
         comment: `② 방법론 추가성 평가 : 경제적 추가성 평가를 의무적으로 수행`,
@@ -1639,6 +1675,7 @@ export const DATA = [
     icon: '/images/main/icon_10.png',
     methodology: [
       {
+        id: 1,
         title: '적용조건',
         result_title: '적용 조건 평가 결과',
         question: [
@@ -1669,6 +1706,7 @@ export const DATA = [
         ],
       },
       {
+        id: 2,
         title: '적용불가\n조건',
         result_title: '적용 불가조건 평가 결과',
         question: [
@@ -1707,6 +1745,7 @@ export const DATA = [
     ],
     additional: [
       {
+        id: 1,
         title: '법적.제도적\n추가성 평가',
         result_title: '법적∙제도적 추가성 평가 결과',
         comment: `①  법적제도적 추가성 평가 : 관련된 법령 및 규정의 만족여부를 자가 판단
@@ -1767,6 +1806,7 @@ export const DATA = [
     icon: '/images/main/icon_11.png',
     methodology: [
       {
+        id: 1,
         title: '적용조건',
         result_title: '적용 조건 평가 결과',
         question: [
@@ -1812,6 +1852,7 @@ export const DATA = [
         ],
       },
       {
+        id: 2,
         title: '적용불가\n조건',
         result_title: '적용 불가조건 평가 결과',
         question: [
@@ -1827,6 +1868,7 @@ export const DATA = [
     ],
     additional: [
       {
+        id: 1,
         title: '법적.제도적\n추가성 평가',
         result_title: '법적∙제도적 추가성 평가 결과',
         comment: `① 법적제도적 추가성 평가 : 관련된 법령 및 규정의 만족여부를 자가 판단
@@ -1876,6 +1918,7 @@ export const DATA = [
         ],
       },
       {
+        id: 2,
         title: '방법론\n추가성 평가',
         result_title: '방법론 추가성 평가 결과',
         comment: `② 방법론 추가성 평가 : 장벽 분석(투자 장벽, 기술 장벽, 관행 분석 등)`,
@@ -1924,6 +1967,7 @@ export const DATA = [
     icon: '/images/main/icon_12.png',
     methodology: [
       {
+        id: 1,
         title: '적용조건',
         result_title: '적용 조건 평가 결과',
         question: [
@@ -1962,6 +2006,7 @@ export const DATA = [
         ],
       },
       {
+        id: 2,
         title: '적용불가\n조건',
         result_title: '적용 불가조건 평가 결과',
         question: [
@@ -2000,6 +2045,7 @@ export const DATA = [
     ],
     additional: [
       {
+        id: 1,
         title: '법적.제도적\n추가성 평가',
         result_title: '법적∙제도적 추가성 평가 결과',
         comment: `① 법적제도적 추가성 평가 : 관련된 법령 및 규정의 만족여부를 자가 판단
@@ -2049,6 +2095,7 @@ export const DATA = [
         ],
       },
       {
+        id: 2,
         title: '방법론\n추가성 평가',
         result_title: '방법론 추가성 평가 결과',
         comment: `② 방법론 추가성 평가 : 상업적/법적 장벽, 대상 모집 장벽, 일반적인 관행 장벽 분석`,
@@ -2085,6 +2132,7 @@ export const DATA = [
     icon: '/images/main/icon_13.png',
     methodology: [
       {
+        id: 1,
         title: '적용 및 적용\n불가 조건',
         result_title: '적용 및 적용불가조건 평가 결과',
         question: [
@@ -2193,6 +2241,7 @@ export const DATA = [
     ],
     additional: [
       {
+        id: 1,
         title: '법적.제도적\n추가성 평가',
         result_title: '법적∙제도적 추가성 평가 결과',
         comment: `asdasd`,
@@ -2230,6 +2279,7 @@ export const DATA = [
         ],
       },
       {
+        id: 2,
         title: '방법론\n추가성 평가',
         result_title: '방법론 추가성 평가 결과',
         comment: `asdasd`,
@@ -2284,6 +2334,7 @@ export const DATA = [
     icon: '/images/main/icon_14.png',
     methodology: [
       {
+        id: 1,
         title: '적용 및 적용\n불가 조건',
         result_title: '적용 불가조건 평가 결과',
         question: [
@@ -2338,6 +2389,7 @@ export const DATA = [
     ],
     additional: [
       {
+        id: 1,
         title: '법적.제도적\n추가성 평가',
         result_title: '법적∙제도적 추가성 평가 결과',
         comment: `① 법적제도적 추가성 평가 : 관련된 법령 및 규정의 만족여부를 자가 판단
@@ -2409,6 +2461,7 @@ export const DATA = [
         ],
       },
       {
+        id: 2,
         title: '방법론\n추가성 평가',
         result_title: '방법론 추가성 평가 결과',
         comment: `② 방법론 추가성 평가 : 장벽분석(투자 장벽, 기술적 장벽, 관행 장벽 등 분석)`,

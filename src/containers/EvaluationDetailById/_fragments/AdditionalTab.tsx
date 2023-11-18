@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   Accordion,
@@ -19,7 +19,46 @@ import {
   Tr,
 } from '@chakra-ui/react';
 
+import { useEvaluationDetailPageContext } from '@/contexts/pages/evaluationDetail/useEvaluationDetailPageContext';
+
+import isEqual from '@/utils/isEqual';
+
+const COLOR = ['red', 'orange', 'yellow'];
+
 function AdditionalTab({ data }: any) {
+  const dispatch = useEvaluationDetailPageContext((ctx) => ctx.dispatch);
+  const [result, setResult] = useState<any>([]);
+
+  const handleSetResult = (idx: number, item_idx: number, value: boolean) => {
+    const current = [...result];
+    current[idx].question[item_idx].answer = value;
+    setResult(current);
+  };
+
+  const collectResult = data?.additional?.map((addition: any) => ({
+    id: addition.id,
+    question: addition.question.map((question: any) => ({
+      id: question.id,
+      answer: question.answer,
+    })),
+  }));
+
+  useEffect(() => {
+    const isCorrect = isEqual(result, collectResult);
+    dispatch({ type: 'SET_ADDITION_IS_CORRECT', payload: isCorrect });
+  }, [result]);
+
+  useEffect(() => {
+    const extractedData = data?.additional?.map((addition: any) => ({
+      id: addition.id,
+      question: addition.question.map((question: any) => ({
+        id: question.id,
+        answer: null,
+      })),
+    }));
+    setResult(extractedData);
+  }, []);
+
   return (
     <Box mt="40px">
       <TableContainer>
@@ -49,21 +88,23 @@ function AdditionalTab({ data }: any) {
           </Thead>
           <Tbody borderBottomWidth="2px" borderColor="#CDCDCD">
             {data?.additional?.map((addition: any, idx: number) => {
+              const isCorrect =
+                result && isEqual(result[idx], collectResult[idx]);
               return (
                 <React.Fragment key={idx}>
                   {addition?.question?.map((item: any, item_idx: number) => {
+                    const selectedAnswer =
+                      result?.[idx]?.question?.[item_idx]?.answer;
                     return (
                       <React.Fragment key={item_idx}>
                         <Tr>
                           {item_idx === 0 && (
                             <Td
-                              bgColor="#FBFBFB"
+                              bgColor={`${COLOR[idx]}.50`}
                               rowSpan={addition?.question?.length + 2}
                             >
-                              <Text>
-                                법적.제도적
-                                <br />
-                                추가성 평가
+                              <Text textAlign="center" whiteSpace="pre-line">
+                                {addition.title}
                               </Text>
                             </Td>
                           )}
@@ -78,22 +119,52 @@ function AdditionalTab({ data }: any) {
                               w="100%"
                             >
                               <Center
-                                bgColor="#000000"
+                                bgColor={
+                                  selectedAnswer === true
+                                    ? '#000000'
+                                    : '#F5F5F5'
+                                }
                                 w="80px"
                                 h="40px"
                                 borderRadius="full"
                                 cursor="pointer"
+                                onClick={() =>
+                                  handleSetResult(idx, item_idx, true)
+                                }
                               >
-                                <Text color="#FFFFFF">예</Text>
+                                <Text
+                                  color={
+                                    selectedAnswer === true
+                                      ? '#FFFFFF'
+                                      : '#4C4C4C'
+                                  }
+                                >
+                                  예
+                                </Text>
                               </Center>
                               <Center
-                                bgColor="#F5F5F5"
+                                bgColor={
+                                  selectedAnswer === false
+                                    ? '#000000'
+                                    : '#F5F5F5'
+                                }
                                 w="80px"
                                 h="40px"
                                 borderRadius="full"
                                 cursor="pointer"
+                                onClick={() =>
+                                  handleSetResult(idx, item_idx, false)
+                                }
                               >
-                                <Text color="#4C4C4C">아니오</Text>
+                                <Text
+                                  color={
+                                    selectedAnswer === false
+                                      ? '#FFFFFF'
+                                      : '#4C4C4C'
+                                  }
+                                >
+                                  아니오
+                                </Text>
                               </Center>
                             </HStack>
                           </Td>
@@ -101,13 +172,17 @@ function AdditionalTab({ data }: any) {
                       </React.Fragment>
                     );
                   })}
-                  <Tr bgColor="#EFF0EE">
+                  <Tr bgColor={`${COLOR[idx]}.100`}>
                     <Td colSpan={2}>
                       <Text fontWeight="bold">{addition.result_title}</Text>
                     </Td>
                     <Td>
-                      <Text fontWeight="bold" textAlign="center">
-                        만족
+                      <Text
+                        fontWeight="bold"
+                        textAlign="center"
+                        color={isCorrect ? 'black' : 'red'}
+                      >
+                        {isCorrect ? '만족' : '불만족'}
                       </Text>
                     </Td>
                   </Tr>

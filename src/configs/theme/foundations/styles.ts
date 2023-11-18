@@ -7,6 +7,7 @@ const styles = {
       fontFamily: 'Pretendard',
       color: mode('#1A1A1A', '#FFFFFF')(props),
       bg: mode('#FFFFFF', '#363636')(props),
+      wordBreak: 'keep-all',
     },
     '#__next': {
       minHeight: '100vh',

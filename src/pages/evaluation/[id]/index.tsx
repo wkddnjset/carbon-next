@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 
 import HomeLayout from '@/components/@Layout/HomeLayout';
 import EvaluationDetailById from '@/containers/EvaluationDetailById';
+import withEvaluationPageProvider from '@/hocs/withEvaluationPageProvider';
 
 function EvaluationDetailByIdPage() {
   const router = useRouter();
@@ -19,4 +20,4 @@ function EvaluationDetailByIdPage() {
   );
 }
 
-export default EvaluationDetailByIdPage;
+export default withEvaluationPageProvider(EvaluationDetailByIdPage);

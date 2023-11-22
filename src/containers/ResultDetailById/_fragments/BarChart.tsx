@@ -12,7 +12,7 @@ import {
 
 ChartJS.register(CategoryScale, ArcElement, LinearScale, BarElement, Tooltip);
 
-function BarChart({ id, ...basisProps }: any) {
+function BarChart({ id, result, goal, ...basisProps }: any) {
   const options = {
     indexAxis: 'y' as const,
     elements: {
@@ -25,13 +25,19 @@ function BarChart({ id, ...basisProps }: any) {
       legend: {
         display: false,
       },
+      title: {
+        display: true,
+        text: '탄소중립 기여율',
+        fontSize: 40,
+        fontStyle: 'bold',
+      },
     },
   };
   const data = {
-    labels: ['목표', '결과'],
+    labels: ['목표 값', '결과 값'],
     datasets: [
       {
-        data: [65, 59],
+        data: [goal, result],
         backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)'],
         borderColor: ['rgb(255, 99, 132)', 'rgb(255, 159, 64)'],
         borderWidth: 1,

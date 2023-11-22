@@ -4,23 +4,31 @@ import { ArcElement, Chart as ChartJS, Legend, Tooltip } from 'chart.js';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-function DoughnutChart({ id, ...basisProps }: any) {
+function DoughnutChart({ id, result, goal }: any) {
   const options = {
     plugins: {
       legend: {
-        display: false,
+        legend: {
+          position: 'top',
+        },
+        title: {
+          display: true,
+          text: 'NDC 기여율',
+          fontSize: 40,
+          fontStyle: 'bold',
+        },
       },
     },
   };
   const data = {
     labels: [
-      '목표',
-      '결과',
+      '목표 값',
+      '결과 값',
       // 'Yellow'
     ],
     datasets: [
       {
-        data: [300, 50],
+        data: [goal, result],
         backgroundColor: [
           'rgba(75, 192, 192, 0.2)',
           'rgba(54, 162, 235, 0.2)',

@@ -1,20 +1,6 @@
 import { toInteger } from 'lodash-es';
 
-import {
-  Box,
-  Flex,
-  SimpleGrid,
-  Table,
-  TableCaption,
-  TableContainer,
-  Tbody,
-  Td,
-  Text,
-  Tfoot,
-  Th,
-  Thead,
-  Tr,
-} from '@chakra-ui/react';
+import { Box, Flex, SimpleGrid, Text } from '@chakra-ui/react';
 
 import { formatNumberKR } from '@/utils/format/format-number-kr';
 
@@ -23,6 +9,9 @@ function ResultTable({ data, params, ...basisProps }: any) {
     <>
       <SimpleGrid mb="100px" columns={{ base: 1, md: 3 }} spacing="10px">
         {data?.result?.map((inter: any, idx: number) => {
+          const value = (
+            params?.length > 0 ? inter.formula(params) : 0
+          ).toFixed(3);
           return (
             <Box
               key={idx}
@@ -35,10 +24,12 @@ function ResultTable({ data, params, ...basisProps }: any) {
                 {inter.title}
               </Text>
               <Flex justifyContent="center" alignItems="center" mt="10px">
-                <Text fontSize="30px" fontWeight="bold">
-                  {formatNumberKR(
-                    toInteger(params?.length > 0 ? inter.formula(params) : 0),
-                  )}
+                <Text
+                  fontSize="30px"
+                  fontWeight="bold"
+                  color={value > 0 ? 'black' : 'red'}
+                >
+                  {formatNumberKR(value)}
                 </Text>
                 <Text fontSize="15px" textAlign="right" ml="10px">
                   ({inter.unit})

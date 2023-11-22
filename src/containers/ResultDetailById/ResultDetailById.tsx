@@ -13,10 +13,12 @@ import {
 } from '@chakra-ui/react';
 
 import { FORMULA } from '@/constants/formula';
+import { formatNumberKR } from '@/utils/format/format-number-kr';
 
 import BarChart from './_fragments/BarChart';
 import DoughnutChart from './_fragments/DoughnutChart';
 import ResultTable from './_fragments/ResultTable';
+import Sources from './_fragments/Sources';
 
 interface ResultDetailByIdProps extends ChakraProps {
   id?: string | string[];
@@ -51,6 +53,16 @@ function ResultDetailById({ id, ...basisProps }: ResultDetailByIdProps) {
     setParams(extractedData);
   }, [id]);
 
+  const reduction = useMemo(() => {
+    if (!Item) return;
+    const a = Item.result?.find(
+      (item: any) => item.title === '연평균 온실가스 배출 감축량',
+    );
+    if (!a) return;
+    if (!params || params.length < 1) return;
+    return a.formula(params);
+  }, [Item, params]);
+
   return (
     <Box {...basisProps}>
       <Container px="20px">
@@ -69,7 +81,7 @@ function ResultDetailById({ id, ...basisProps }: ResultDetailByIdProps) {
           px="60px"
           py="50px"
           mt="60px"
-          mb="100px"
+          mb="50px"
         >
           <Text fontSize="32px" fontWeight="bold">
             데이터 입력
@@ -110,6 +122,9 @@ function ResultDetailById({ id, ...basisProps }: ResultDetailByIdProps) {
             </Button>
           </Center>
         </Box>
+
+        <Sources id={id} />
+
         <ResultTable data={Item} params={params} />
         <Flex alignItems="center" mb="100px">
           <Box maxW="500px" mx="auto" w="100%">
@@ -121,8 +136,35 @@ function ResultDetailById({ id, ...basisProps }: ResultDetailByIdProps) {
             >
               NDC 기여율
             </Text>
-            <DoughnutChart />
+            <DoughnutChart
+              result={Math.floor(reduction * 10)}
+              goal={371000000}
+            />
           </Box>
+          <Box maxW="500px" mx="auto" w="100%">
+            <VStack>
+              <Text fontSize="24px" fontWeight="bold">
+                결과 값
+              </Text>
+              <Text fontSize="18px" textAlign="center" mb="10px">
+                <Text as="span" fontSize="24px" fontWeight="bold">
+                  {formatNumberKR(Math.round(reduction * 1000) / 100)}
+                </Text>{' '}
+                (tCO₂)
+              </Text>
+              <Text fontSize="24px" fontWeight="bold">
+                목표 값
+              </Text>
+              <Text fontSize="18px">
+                <Text as="span" fontSize="24px" fontWeight="bold">
+                  371,000,000
+                </Text>{' '}
+                (tCO₂)
+              </Text>
+            </VStack>
+          </Box>
+        </Flex>
+        <Flex alignItems="center" mb="100px">
           <Box maxW="500px" mx="auto" w="100%">
             <Text
               fontSize="16px"
@@ -132,7 +174,29 @@ function ResultDetailById({ id, ...basisProps }: ResultDetailByIdProps) {
             >
               탄소중립 기여율
             </Text>
-            <BarChart />
+            <BarChart result={Math.floor(reduction * 30)} goal={981000000} />
+          </Box>
+          <Box maxW="500px" mx="auto" w="100%">
+            <VStack>
+              <Text fontSize="24px" fontWeight="bold">
+                결과 값
+              </Text>
+              <Text fontSize="18px" textAlign="center" mb="10px">
+                <Text as="span" fontSize="24px" fontWeight="bold">
+                  {formatNumberKR(Math.round(reduction * 3000) / 100)}
+                </Text>{' '}
+                (tCO₂)
+              </Text>
+              <Text fontSize="24px" fontWeight="bold">
+                목표 값
+              </Text>
+              <Text fontSize="18px">
+                <Text as="span" fontSize="24px" fontWeight="bold">
+                  981,000,000
+                </Text>{' '}
+                (tCO₂)
+              </Text>
+            </VStack>
           </Box>
         </Flex>
       </Container>

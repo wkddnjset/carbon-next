@@ -1519,12 +1519,12 @@ export const DATA = [
   },
   {
     id: 10,
-    title: '수상, 선로 및\n도로운송에서\n화물 운송의 수단 전환',
+    title: '수단전환(Modal Shift)\n에서 액체연료의 운송',
     shortTitle: 'AM0110',
     description:
       '트럭 등을 통해 운송되던 액체연료가 파이프라인 시스템을 통해 운송됨에 따라 온실가스 배출이 감축',
     subTitle: '07A-AM0110',
-    icon: '/images/main/icon_9.png',
+    icon: '/images/main/icon_a.png',
     methodology: [
       {
         id: 1,

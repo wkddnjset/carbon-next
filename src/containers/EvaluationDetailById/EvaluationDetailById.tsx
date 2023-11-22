@@ -40,7 +40,13 @@ function EvaluationDetailById({
 
   return (
     <>
-      <Modal id={id} isOpen={isOpen} onClose={onClose} />
+      <Modal
+        id={id}
+        isOpen={isOpen}
+        onClose={onClose}
+        selectedTab={selectedTab}
+        setSelectedTab={setSelectedTab}
+      />
       <Box {...basisProps} pt="20px" pb="150px" overflow="hidden">
         <Container px="20px">
           <Flex

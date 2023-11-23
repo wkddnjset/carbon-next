@@ -34,12 +34,12 @@ function BarChart({ id, result, goal, ...basisProps }: any) {
     },
   };
   const data = {
-    labels: ['목표 값', '결과 값'],
+    labels: ['예상 감축량', '목표'],
     datasets: [
       {
-        data: [goal, result],
-        backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)'],
-        borderColor: ['rgb(255, 99, 132)', 'rgb(255, 159, 64)'],
+        backgroundColor: ['rgba(255, 159, 64, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+        data: [result, goal],
+        borderColor: ['rgb(255, 159, 64)', 'rgb(255, 99, 132)'],
         borderWidth: 1,
       },
     ],

@@ -1,4 +1,6 @@
-import { Doughnut } from 'react-chartjs-2';
+import { useMemo } from 'react';
+
+import { Pie } from 'react-chartjs-2';
 
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from 'chart.js';
 
@@ -10,40 +12,57 @@ function DoughnutChart({ id, result, goal }: any) {
       legend: {
         legend: {
           position: 'top',
+          display: false,
         },
         title: {
-          display: true,
-          text: 'NDC 기여율',
-          fontSize: 40,
-          fontStyle: 'bold',
+          display: false,
         },
       },
     },
   };
+
+  const type = useMemo(() => {
+    return goal > result;
+  }, [result, goal]);
+
+  const dataset = useMemo(() => {
+    if (goal > result) {
+      return [
+        [goal, 0],
+        [goal - result, result],
+      ];
+    } else {
+      return [
+        [0, result],
+        [result - goal, goal],
+      ];
+    }
+  }, [result, goal]);
+
   const data = {
-    labels: [
-      '목표 값',
-      '결과 값',
-      // 'Yellow'
-    ],
+    labels: ['목표', '예상 감축량'],
     datasets: [
       {
-        data: [goal, result],
+        data: dataset[0],
+        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)'],
+        borderColor: ['rgb(75, 192, 192)', 'rgb(54, 162, 235)'],
+        hoverOffset: 4,
+      },
+      {
+        data: dataset[1],
         backgroundColor: [
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          // 'rgba(153, 102, 255, 0.2)',
+          'white',
+          type ? 'rgba(54, 162, 235, 0.2)' : 'rgba(75, 192, 192, 0.2)',
         ],
         borderColor: [
-          'rgb(75, 192, 192)',
-          'rgb(54, 162, 235)',
-          // 'rgb(153, 102, 255)',
+          'white',
+          type ? 'rgb(54, 162, 235)' : 'rgb(75, 192, 192)',
         ],
         hoverOffset: 4,
       },
     ],
   };
-  return <Doughnut options={options} data={data} />;
+  return <Pie options={options} data={data} />;
 }
 
 export default DoughnutChart;

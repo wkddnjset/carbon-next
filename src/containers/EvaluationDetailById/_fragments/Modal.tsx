@@ -63,7 +63,7 @@ function ModalComponent({
               >
                 {selectedTab === 1
                   ? '추가성 평가로 넘어가기'
-                  : '적용 평가로 돌아가기'}
+                  : '적용 조건 평가로 돌아가기'}
               </Button>
               <Button
                 w="100%"

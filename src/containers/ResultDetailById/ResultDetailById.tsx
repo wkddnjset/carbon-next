@@ -144,16 +144,18 @@ function ResultDetailById({ id, ...basisProps }: ResultDetailByIdProps) {
           <Box maxW="500px" mx="auto" w="100%">
             <VStack>
               <Text fontSize="24px" fontWeight="bold">
-                결과 값
+                예상 감축량
               </Text>
               <Text fontSize="18px" textAlign="center" mb="10px">
                 <Text as="span" fontSize="24px" fontWeight="bold">
-                  {formatNumberKR(Math.round(reduction * 1000) / 100)}
+                  {reduction
+                    ? formatNumberKR(Math.round(reduction * 1000) / 100)
+                    : 0}
                 </Text>{' '}
                 (tCO₂)
               </Text>
               <Text fontSize="24px" fontWeight="bold">
-                목표 값
+                목표
               </Text>
               <Text fontSize="18px">
                 <Text as="span" fontSize="24px" fontWeight="bold">
@@ -179,16 +181,18 @@ function ResultDetailById({ id, ...basisProps }: ResultDetailByIdProps) {
           <Box maxW="500px" mx="auto" w="100%">
             <VStack>
               <Text fontSize="24px" fontWeight="bold">
-                결과 값
+                예상 감축량
               </Text>
               <Text fontSize="18px" textAlign="center" mb="10px">
                 <Text as="span" fontSize="24px" fontWeight="bold">
-                  {formatNumberKR(Math.round(reduction * 3000) / 100)}
+                  {reduction
+                    ? formatNumberKR(Math.round(reduction * 3000) / 100)
+                    : 0}
                 </Text>{' '}
                 (tCO₂)
               </Text>
               <Text fontSize="24px" fontWeight="bold">
-                목표 값
+                목표
               </Text>
               <Text fontSize="18px">
                 <Text as="span" fontSize="24px" fontWeight="bold">

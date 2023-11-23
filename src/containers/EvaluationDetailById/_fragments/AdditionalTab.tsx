@@ -199,6 +199,14 @@ function AdditionalTab({ data }: any) {
                           <AccordionPanel p="20px">
                             <Text whiteSpace="pre-line">
                               {addition.comment}
+                              {`
+                              
+                              추가성이란?
+
+외부사업을 수행하기 위해 추가성을 만족해야하는 조건으로 일반적인 경영여건 이상의 추가적인 노력을 말하며
+법적 추가성의 경우, 법적인 의무로 수행되는 사업은 추가성을 만족할 수 없다.
+경제적 추가성의 경우, 수행되는 사업의 경제성이 가장 좋은 경우 추가성을 만족할 수 없다.
+방법론 추가성의 경우, 방법론별 조건이 있으면 해당 조건을 만족하지 못하면 추가성을 만족할 수 없다.`}
                             </Text>
                           </AccordionPanel>
                         </AccordionItem>

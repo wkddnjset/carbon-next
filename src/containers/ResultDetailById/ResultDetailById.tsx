@@ -126,8 +126,13 @@ function ResultDetailById({ id, ...basisProps }: ResultDetailByIdProps) {
         <Sources id={id} />
 
         <ResultTable data={Item} params={params} />
-        <Flex alignItems="center" mb="100px">
-          <Box maxW="500px" mx="auto" w="100%">
+        <Flex
+          alignItems="center"
+          mb="100px"
+          direction={{ base: 'column', sm: 'row' }}
+          gap="20px"
+        >
+          <Box maxW="500px" mx="auto" w="50%">
             <Text
               fontSize="16px"
               fontWeight="bold"
@@ -166,8 +171,13 @@ function ResultDetailById({ id, ...basisProps }: ResultDetailByIdProps) {
             </VStack>
           </Box>
         </Flex>
-        <Flex alignItems="center" mb="100px">
-          <Box maxW="500px" mx="auto" w="100%">
+        <Flex
+          alignItems="center"
+          mb="100px"
+          direction={{ base: 'column', sm: 'row' }}
+          gap="20px"
+        >
+          <Box maxW="500px" mx="auto" w="50%">
             <Text
               fontSize="16px"
               fontWeight="bold"

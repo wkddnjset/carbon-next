@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { Pie } from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from 'chart.js';
 
@@ -18,51 +18,45 @@ function DoughnutChart({ id, result, goal }: any) {
           display: false,
         },
       },
+      tooltip: {
+        filter: function (tooltipItem: any) {
+          return tooltipItem.dataIndex !== 1;
+        },
+      },
     },
   };
-
-  const type = useMemo(() => {
-    return goal > result;
-  }, [result, goal]);
 
   const dataset = useMemo(() => {
     if (goal > result) {
       return [
         [goal, 0],
-        [goal - result, result],
+        [result, goal - result],
       ];
     } else {
       return [
-        [0, result],
-        [result - goal, goal],
+        [goal, result - goal],
+        [result, 0],
       ];
     }
   }, [result, goal]);
 
   const data = {
-    labels: ['목표', '예상 감축량'],
     datasets: [
       {
+        label: '목표',
         data: dataset[0],
-        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)'],
-        borderColor: ['rgb(75, 192, 192)', 'rgb(54, 162, 235)'],
+        backgroundColor: ['rgba(75, 192, 192, 0.2)', '#F8F8F8'],
         hoverOffset: 4,
       },
       {
+        label: '예상 감축량',
         data: dataset[1],
-        backgroundColor: [
-          'white',
-          type ? 'rgba(54, 162, 235, 0.2)' : 'rgba(75, 192, 192, 0.2)',
-        ],
-        borderColor: [
-          'white',
-          type ? 'rgb(54, 162, 235)' : 'rgb(75, 192, 192)',
-        ],
+        backgroundColor: ['rgba(54, 162, 235, 0.2)', '#F8F8F8'],
         hoverOffset: 4,
       },
     ],
   };
-  return <Pie options={options} data={data} />;
+  return <Doughnut options={options} data={data} />;
 }
 
 export default DoughnutChart;

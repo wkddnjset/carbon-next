@@ -14,10 +14,10 @@ ChartJS.register(CategoryScale, ArcElement, LinearScale, BarElement, Tooltip);
 
 function BarChart({ id, result, goal, ...basisProps }: any) {
   const options = {
-    indexAxis: 'y' as const,
+    // indexAxis: 'y' as const,
     elements: {
       bar: {
-        borderWidth: 100,
+        borderWidth: 50,
       },
     },
     responsive: true,
@@ -39,12 +39,11 @@ function BarChart({ id, result, goal, ...basisProps }: any) {
       {
         backgroundColor: ['rgba(255, 159, 64, 0.2)', 'rgba(255, 99, 132, 0.2)'],
         data: [result, goal],
-        borderColor: ['rgb(255, 159, 64)', 'rgb(255, 99, 132)'],
         borderWidth: 1,
       },
     ],
   };
-  return <Bar data={data} options={options} />;
+  return <Bar height="400px" data={data} options={options} />;
 }
 
 export default BarChart;

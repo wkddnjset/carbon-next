@@ -876,7 +876,7 @@ export const FORMULA: any = [
         unit: 'tCO₂-eq/년',
         formula: (params: any) => {
           console.log(params);
-          return 108868.54192185 * 0.0033;
+          return 82351.3208692185 * 0.0033;
         },
       },
       {
@@ -960,7 +960,7 @@ export const FORMULA: any = [
                 Math.pow(0.99, 10) *
                 params[1].value) /
               10 -
-            108868.54192185 * 0.0033
+            82351.3208692185 * 0.0033
           );
         },
       },

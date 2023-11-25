@@ -30,7 +30,11 @@ function MethodologyTab({ data }: any) {
   const dispatch = useEvaluationDetailPageContext((ctx) => ctx.dispatch);
   const [result, setResult] = useState<any>([]);
 
-  const handleSetResult = (idx: number, item_idx: number, value: boolean) => {
+  const handleSetResult = (
+    idx: number,
+    item_idx: number,
+    value: boolean | null,
+  ) => {
     const current = [...result];
     current[idx].question[item_idx].answer = value;
     setResult(current);
@@ -134,7 +138,9 @@ function MethodologyTab({ data }: any) {
                                     borderRadius="full"
                                     cursor="pointer"
                                     onClick={() =>
-                                      handleSetResult(idx, item_idx, true)
+                                      selectedAnswer === true
+                                        ? handleSetResult(idx, item_idx, null)
+                                        : handleSetResult(idx, item_idx, true)
                                     }
                                   >
                                     <Text
@@ -158,7 +164,9 @@ function MethodologyTab({ data }: any) {
                                     borderRadius="full"
                                     cursor="pointer"
                                     onClick={() =>
-                                      handleSetResult(idx, item_idx, false)
+                                      selectedAnswer === false
+                                        ? handleSetResult(idx, item_idx, null)
+                                        : handleSetResult(idx, item_idx, false)
                                     }
                                   >
                                     <Text

@@ -8,6 +8,7 @@ import {
   Container,
   Flex,
   Input,
+  Select,
   Text,
   VStack,
 } from '@chakra-ui/react';
@@ -32,14 +33,30 @@ function ResultDetailById({ id, ...basisProps }: ResultDetailByIdProps) {
   }, [id]);
 
   const submitForm = () => {
+    let data = null;
     const inputs = document.getElementsByTagName('input');
-    const data = Array.from(inputs).map((input, idx) => ({
-      id: Item.params[idx].id,
-      title: Item.params[idx].title,
-      unit: Item.params[idx].unit,
-      value: Number(input.value),
-    }));
+
+    if (Item.id === 9) {
+      const selectElement = document.getElementById('select-box');
+      data = Array.from([inputs[0], selectElement, inputs[1]]).map(
+        (input: any, idx) => ({
+          id: Item.params[idx].id,
+          title: Item.params[idx].title,
+          unit: Item.params[idx].unit,
+          value: Number(input.value),
+        }),
+      );
+    } else {
+      data = Array.from(inputs).map((input, idx) => ({
+        id: Item.params[idx].id,
+        title: Item.params[idx].title,
+        unit: Item.params[idx].unit,
+        value: Number(input.value),
+      }));
+    }
+
     console.log(data);
+
     setParams(data);
   };
 
@@ -54,13 +71,22 @@ function ResultDetailById({ id, ...basisProps }: ResultDetailByIdProps) {
   }, [id]);
 
   const reduction = useMemo(() => {
+    let a = null;
     if (!Item) return;
-    const a = Item.result?.find(
-      (item: any) => item.title === '연평균 온실가스 배출 감축량',
-    );
-    if (!a) return;
     if (!params || params.length < 1) return;
-    return a.formula(params);
+    if (Item.result.length > 3) {
+      // 여기가 왜 틀린거야?
+      a = Item.result.filter((item: any) => item.id === 3 || item.id === 6);
+      if (!a) return;
+      return a[0].formula(params) + a[1].formula(params);
+    } else {
+      a = Item.result?.find(
+        (item: any) => item.id === 3 || item.id === 6,
+        // (item: any) => item.title === '연평균 온실가스 배출 감축량',
+      );
+      if (!a) return;
+      return a.formula(params);
+    }
   }, [Item, params]);
 
   return (
@@ -88,6 +114,48 @@ function ResultDetailById({ id, ...basisProps }: ResultDetailByIdProps) {
           </Text>
           <VStack w="100%" mt="30px" spacing="30px">
             {Item?.params.map((p: any, idx: number) => {
+              if (Item.id === 9 && p.id === 2) {
+                return (
+                  <Box key={idx} w="100%">
+                    <Flex mb="10px" alignItems="center">
+                      <Text fontSize="18px" fontWeight="bold">
+                        {p.title}
+                      </Text>
+                      <Text fontSize="14px" ml="10px">
+                        단위 : {p.unit}
+                      </Text>
+                    </Flex>
+                    <Select
+                      id="select-box"
+                      defaultValue={p.default}
+                      placeholder="유형 선택"
+                      bgColor="white"
+                      borderRadius="full"
+                      h="60px"
+                    >
+                      <option value={83}>농작물, 가축</option>
+                      <option value={61}>음료</option>
+                      <option value={76}>식료품</option>
+                      <option value={94}>통조림</option>
+                      <option value={74}>기타 식재료, 사료</option>
+                      <option value={76}>고체 광물 연료, 석유 제품</option>
+                      <option value={90}>광물, 금속 폐기물</option>
+                      <option value={80}>금속 제품</option>
+                      <option value={57}>광물 제품</option>
+                      <option value={70}>
+                        기타 원유 제품, 제조된 광물, 건설 재료
+                      </option>
+                      <option value={76}>비료</option>
+                      <option value={70}>화학제품</option>
+                      <option value={100}>운송 장비</option>
+                      <option value={119}>기계, 금속 제품</option>
+                      <option value={84}>유리, 세라믹, 도자기 제품</option>
+                      <option value={94}>묶음 제품</option>
+                      <option value={113}>기타 재료</option>
+                    </Select>
+                  </Box>
+                );
+              }
               return (
                 <Box key={idx} w="100%">
                   <Flex mb="10px" alignItems="center">

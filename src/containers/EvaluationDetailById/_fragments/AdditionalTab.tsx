@@ -29,11 +29,7 @@ function AdditionalTab({ data }: any) {
   const dispatch = useEvaluationDetailPageContext((ctx) => ctx.dispatch);
   const [result, setResult] = useState<any>([]);
 
-  const handleSetResult = (
-    idx: number,
-    item_idx: number,
-    value: boolean | null,
-  ) => {
+  const handleSetResult = (idx: number, item_idx: number, value: any) => {
     const current = [...result];
     current[idx].question[item_idx].answer = value;
     setResult(current);
@@ -57,7 +53,7 @@ function AdditionalTab({ data }: any) {
       id: addition.id,
       question: addition.question.map((question: any) => ({
         id: question.id,
-        answer: null,
+        answer: undefined,
       })),
     }));
     setResult(extractedData);
@@ -134,7 +130,7 @@ function AdditionalTab({ data }: any) {
                                 cursor="pointer"
                                 onClick={() =>
                                   selectedAnswer === true
-                                    ? handleSetResult(idx, item_idx, null)
+                                    ? handleSetResult(idx, item_idx, undefined)
                                     : handleSetResult(idx, item_idx, true)
                                 }
                               >
@@ -160,7 +156,7 @@ function AdditionalTab({ data }: any) {
                                 cursor="pointer"
                                 onClick={() =>
                                   selectedAnswer === false
-                                    ? handleSetResult(idx, item_idx, null)
+                                    ? handleSetResult(idx, item_idx, undefined)
                                     : handleSetResult(idx, item_idx, false)
                                 }
                               >

@@ -31,7 +31,7 @@ export const FORMULA: any = [
         title: '연평균 베이스라인 배출량',
         unit: 'tCO₂-eq/년',
         formula: (params: any) => {
-          return params[0].value * 39.4 * 56.1 * Math.pow(10, 6);
+          return params[0].value * 39.4 * 56.1 * Math.pow(10, -6);
         },
       },
       {
@@ -73,7 +73,7 @@ export const FORMULA: any = [
         unit: 'tCO₂-eq/년',
         formula: (params: any) => {
           return (
-            params[0].value * 39.4 * 56.1 * Math.pow(10, 6) - // 전략 사용에 따른 온실가스 배출량
+            params[0].value * 39.4 * 56.1 * Math.pow(10, -6) - // 전략 사용에 따른 온실가스 배출량
             (((12516 * 365 * Math.pow(10, -3) * params[0].value) / 2318763.24) *
               0.4591 +
               // 화석연료 사용에 따른 온실가스 배출량
@@ -127,13 +127,23 @@ export const FORMULA: any = [
               64.0 *
               292000 *
               params[0].value *
-              Math.pow(10, 6) +
+              Math.pow(10, -6) +
             // 화물차량 베이스라인 배출량
-            0.00026 * 35.2 * 73.2 * 292000 * params[1].value * Math.pow(10, 6) +
+            0.00026 *
+              35.2 *
+              73.2 *
+              292000 *
+              params[1].value *
+              Math.pow(10, -6) +
             // 승합차량(경유) 베이스라인 배출량
-            0.00041 * 35.2 * 73.2 * 292000 * params[2].value * Math.pow(10, 6) +
+            0.00041 *
+              35.2 *
+              73.2 *
+              292000 *
+              params[2].value *
+              Math.pow(10, -6) +
             // 승합차량(CNG) 베이스라인 배출량
-            0.00099 * 38.9 * 56.1 * 292000 * params[3].value * Math.pow(10, 6)
+            0.00099 * 38.9 * 56.1 * 292000 * params[3].value * Math.pow(10, -6)
           );
         },
       },
@@ -148,7 +158,7 @@ export const FORMULA: any = [
               0.00026 * 35.2 * 73.2 * 10 * params[1].value +
               0.00041 * 35.2 * 73.2 * 10 * params[2].value +
               0.00099 * 38.9 * 56.1 * 10 * params[3].value) *
-            Math.pow(10, 6)
+            Math.pow(10, -6)
           );
         },
       },
@@ -165,7 +175,7 @@ export const FORMULA: any = [
               64.0 *
               292000 *
               params[0].value *
-              Math.pow(10, 6) +
+              Math.pow(10, -6) +
             // 화물차량 베이스라인 배출량
             0.00026 *
               35.2 *
@@ -876,7 +886,7 @@ export const FORMULA: any = [
         unit: 'tCO₂-eq/년',
         formula: (params: any) => {
           console.log(params);
-          return 82351.3208692185 * 0.0033;
+          return 108868.54192185 * 0.0033;
         },
       },
       {
@@ -960,7 +970,7 @@ export const FORMULA: any = [
                 Math.pow(0.99, 10) *
                 params[1].value) /
               10 -
-            82351.3208692185 * 0.0033
+            108868.54192185 * 0.0033
           );
         },
       },
@@ -1413,7 +1423,7 @@ export const FORMULA: any = [
         unit: 'gCO₂/tkm',
         default: 57,
       },
-      { id: 3, title: '비적재 고려 요소', unit: '비율', default: 0.5 },
+      { id: 3, title: '선박으로 반송된 화물의 양', unit: 'ton', default: 1000 },
     ],
     result: [
       {
@@ -1435,8 +1445,11 @@ export const FORMULA: any = [
         unit: 'tCO₂-eq/년',
         formula: (params: any) => {
           return (
-            params[2].value *
-            (params[0].value * 260.833333333333 * 70 * Math.pow(10, -6))
+            params[0].value *
+            260.833333333333 *
+            70 *
+            Math.pow(10, -6) *
+            (params[0].value / (params[0].value + params[2].value))
           );
         },
       },
@@ -1450,8 +1463,7 @@ export const FORMULA: any = [
               260.833333333333 *
               params[1].value *
               Math.pow(10, -6) -
-            params[2].value *
-              (params[0].value * 260.833333333333 * 70 * Math.pow(10, -6))
+            0.5 * (params[0].value * 260.833333333333 * 70 * Math.pow(10, -6))
           );
         },
       },
@@ -1620,6 +1632,19 @@ export const FORMULA: any = [
         unit: 'Nm³/년',
         default: 2318763.24,
       },
+      {
+        id: 2,
+        title: '설비 운전 화석연료 사용량',
+        unit: 'Nm³,L,ton/년',
+        default: 0.0,
+      },
+      {
+        id: 3,
+        title: 'CNG 운송용 트럭 평균 용량',
+        unit: 'km/Truck',
+        default: 200.0,
+      },
+      { id: 4, title: 'CNG 운송거리', unit: 'Nm³/년', default: 20 },
     ],
     result: [
       {
@@ -1627,7 +1652,14 @@ export const FORMULA: any = [
         title: '연평균 베이스라인 배출량',
         unit: 'tCO₂-eq/년',
         formula: (params: any) => {
-          return params[0].value * 39.4 * 56.1 * Math.pow(10, -6);
+          return (
+            ((params[0].value * 39.4) / 30.4) *
+            0.95 *
+            1 *
+            30.4 *
+            71.6 *
+            Math.pow(10, -6)
+          );
         },
       },
       {
@@ -1636,9 +1668,25 @@ export const FORMULA: any = [
         unit: 'tCO₂-eq/년',
         formula: (params: any) => {
           return (
-            4568.34 * 0.4591 +
-            4029600 * 0.05 * 0.61 * 0.0007156 * 21 +
-            2383858.8 * 0.0000125 * 21
+            ((12516 * 365 * Math.pow(10, -3) * params[0].value) / 2318763.24) *
+              0.4591 +
+            params[1].value * 35.2 * 73.2 +
+            ((282 * 24 * 365 * params[0].value) /
+              2318763.24 /
+              params[2].value) *
+              params[3].value *
+              (35.2 * 73.2 * 0.107142857142857 * Math.pow(10, -6)) *
+              Math.pow(10, -3) +
+            ((460 * 24 * 365 * params[0].value) / 2318763.24) *
+              0.05 *
+              0.61 *
+              0.0007156 *
+              21 +
+            ((282 * 24 * 365 * 96.5 * Math.pow(10, -2) * params[0].value) /
+              2318763.24) *
+              0.0000125 *
+              21 +
+            params[3].value
           );
         },
       },
@@ -1648,10 +1696,31 @@ export const FORMULA: any = [
         unit: 'tCO₂-eq/년',
         formula: (params: any) => {
           return (
-            params[0].value * 39.4 * 56.1 * Math.pow(10, -6) -
-            (4568.34 * 0.4591 +
-              4029600 * 0.05 * 0.61 * 0.0007156 * 21 +
-              2383858.8 * 0.0000125 * 21)
+            ((params[0].value * 39.4) / 30.4) *
+              0.95 *
+              1 *
+              30.4 *
+              71.6 *
+              Math.pow(10, -6) -
+            (((12516 * 365 * Math.pow(10, -3) * params[0].value) / 2318763.24) *
+              0.4591 +
+              params[1].value * 35.2 * 73.2 +
+              ((282 * 24 * 365 * params[0].value) /
+                2318763.24 /
+                params[2].value) *
+                params[3].value *
+                (35.2 * 73.2 * 0.107142857142857 * Math.pow(10, -6)) *
+                Math.pow(10, -3) +
+              ((460 * 24 * 365 * params[0].value) / 2318763.24) *
+                0.05 *
+                0.61 *
+                0.0007156 *
+                21 +
+              ((282 * 24 * 365 * 96.5 * Math.pow(10, -2) * params[0].value) /
+                2318763.24) *
+                0.0000125 *
+                21 +
+              params[3].value)
           );
         },
       },

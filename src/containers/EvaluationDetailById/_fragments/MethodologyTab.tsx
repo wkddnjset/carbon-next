@@ -17,6 +17,7 @@ import {
   Th,
   Thead,
   Tr,
+  VStack,
 } from '@chakra-ui/react';
 
 import { useEvaluationDetailPageContext } from '@/contexts/pages/evaluationDetail/useEvaluationDetailPageContext';
@@ -30,11 +31,7 @@ function MethodologyTab({ data }: any) {
   const dispatch = useEvaluationDetailPageContext((ctx) => ctx.dispatch);
   const [result, setResult] = useState<any>([]);
 
-  const handleSetResult = (
-    idx: number,
-    item_idx: number,
-    value: boolean | null,
-  ) => {
+  const handleSetResult = (idx: number, item_idx: number, value: any) => {
     const current = [...result];
     current[idx].question[item_idx].answer = value;
     setResult(current);
@@ -58,7 +55,7 @@ function MethodologyTab({ data }: any) {
       id: addition.id,
       question: addition.question.map((question: any) => ({
         id: question.id,
-        answer: null,
+        answer: undefined,
       })),
     }));
     setResult(extractedData);
@@ -118,14 +115,12 @@ function MethodologyTab({ data }: any) {
                             <Text whiteSpace="pre-line">{item.title}</Text>
                           </Td>
                           <Td>
-                            <HStack
-                              spacing="10px"
-                              justifyContent="center"
-                              w="100%"
-                            >
-                              {item.answer === null ? (
-                                <Text>해당없음</Text>
-                              ) : (
+                            <VStack>
+                              <HStack
+                                spacing="10px"
+                                justifyContent="center"
+                                w="100%"
+                              >
                                 <>
                                   <Center
                                     bgColor={
@@ -139,7 +134,11 @@ function MethodologyTab({ data }: any) {
                                     cursor="pointer"
                                     onClick={() =>
                                       selectedAnswer === true
-                                        ? handleSetResult(idx, item_idx, null)
+                                        ? handleSetResult(
+                                            idx,
+                                            item_idx,
+                                            undefined,
+                                          )
                                         : handleSetResult(idx, item_idx, true)
                                     }
                                   >
@@ -165,7 +164,11 @@ function MethodologyTab({ data }: any) {
                                     cursor="pointer"
                                     onClick={() =>
                                       selectedAnswer === false
-                                        ? handleSetResult(idx, item_idx, null)
+                                        ? handleSetResult(
+                                            idx,
+                                            item_idx,
+                                            undefined,
+                                          )
                                         : handleSetResult(idx, item_idx, false)
                                     }
                                   >
@@ -180,8 +183,40 @@ function MethodologyTab({ data }: any) {
                                     </Text>
                                   </Center>
                                 </>
+                              </HStack>
+                              {item.answer === null && (
+                                <Center
+                                  bgColor={
+                                    selectedAnswer === null
+                                      ? '#000000'
+                                      : '#F5F5F5'
+                                  }
+                                  w="170px"
+                                  h="40px"
+                                  borderRadius="full"
+                                  cursor="pointer"
+                                  onClick={() =>
+                                    selectedAnswer === null
+                                      ? handleSetResult(
+                                          idx,
+                                          item_idx,
+                                          undefined,
+                                        )
+                                      : handleSetResult(idx, item_idx, null)
+                                  }
+                                >
+                                  <Text
+                                    color={
+                                      selectedAnswer === null
+                                        ? '#FFFFFF'
+                                        : '#4C4C4C'
+                                    }
+                                  >
+                                    해당없음
+                                  </Text>
+                                </Center>
                               )}
-                            </HStack>
+                            </VStack>
                           </Td>
                         </Tr>
                         <Tr>

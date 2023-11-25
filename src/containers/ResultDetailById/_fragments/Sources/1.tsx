@@ -23,7 +23,7 @@ const DATA = [
   { id: 5, title: '경유 이산화탄소배출계수', val: 73.2, unit: 'tCO₂/TJ' },
   {
     id: 6,
-    title: '혐기성 처리과정으로부터 CH4 누출량',
+    title: '혐기성 처리과정으로부터 CH₄ 누출량',
     val: 1846.93,
     unit: 'tCO₂-eq/년',
     source:
@@ -42,7 +42,7 @@ const DATA = [
   {
     id: 11,
     title:
-      '바이오가스 및 바이오 CNG 제조, 정제, 압축, 저장 및 수송과정에서의 CH4 누출량',
+      '바이오가스 및 바이오 CNG 제조, 정제, 압축, 저장 및 수송과정에서의 CH₄ 누출량',
     val: 625.762935,
     unit: 'tCO₂-eq/년',
   },

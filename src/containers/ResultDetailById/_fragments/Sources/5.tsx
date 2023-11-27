@@ -21,7 +21,7 @@ const DATA = [
   {
     id: 3,
     title: '셀토스디젤 km당 연료소비량',
-    val: 0.0568181818181818,
+    val: 0.057,
     unit: 'L/km',
     source: '전기차량 베이스라인 차량 선정 프로그램, 한국교통안전공단',
     rowSpan: 1,
@@ -29,7 +29,7 @@ const DATA = [
   {
     id: 4,
     title: '현대 엑시언트 km당 연료소비량',
-    val: 0.27027027027027,
+    val: 0.27,
     unit: 'L/km',
     source: '국토교통부',
     rowSpan: 1,
@@ -37,7 +37,7 @@ const DATA = [
   {
     id: 5,
     title: '차량별 주행거리(승용)',
-    val: 13018.3333333333,
+    val: 13018.3,
     unit: 'km/년',
     source: '2021 국가교통통계, 국토교통부',
     rowSpan: 1,
@@ -52,16 +52,16 @@ const DATA = [
   },
   {
     id: 7,
-    title: '넥쏘 km당 수소 소비량',
+    title: '넥쏘 수소 1kg당 주행거리',
     val: 88,
-    unit: 'kg/km',
+    unit: 'km/kg',
     source: '넥쏘 카탈로그',
     rowSpan: 1,
   },
   {
     id: 8,
     title: '현대 엑시언트FCEV 수소 소비량',
-    val: 18.3870967741935,
+    val: 18.39,
     unit: 'km/kg',
     source: '항속거리/수소충전량',
     rowSpan: 1,
@@ -92,7 +92,7 @@ function Sources5() {
         <Thead>
           <Tr>
             <Th>구분</Th>
-            <Th>인자정보</Th>
+            <Th textAlign="center">인자정보</Th>
             <Th isNumeric>값</Th>
             <Th>단위</Th>
             <Th textAlign="center">출처</Th>
@@ -103,11 +103,11 @@ function Sources5() {
             return (
               <Tr key={item.id}>
                 <Td>{item.id}</Td>
-                <Td>{item.title}</Td>
+                <Td textAlign="center">{item.title}</Td>
                 <Td isNumeric>{item.val}</Td>
                 <Td>{item.unit}</Td>
                 {item?.source && (
-                  <Td rowSpan={item.rowSpan} textAlign="center">
+                  <Td rowSpan={item.rowSpan} textAlign="left">
                     {item.source}
                   </Td>
                 )}

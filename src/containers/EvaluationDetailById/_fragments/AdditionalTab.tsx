@@ -17,6 +17,7 @@ import {
   Th,
   Thead,
   Tr,
+  VStack,
 } from '@chakra-ui/react';
 
 import { useEvaluationDetailPageContext } from '@/contexts/pages/evaluationDetail/useEvaluationDetailPageContext';
@@ -37,9 +38,36 @@ function AdditionalTab({ data }: any) {
 
   const collectResult = data?.additional?.map((addition: any) => ({
     id: addition.id,
-    question: addition.question.map((question: any) => ({
+    question: addition.question.map((question: any) => {
+      if (question.sub_answer) {
+        return {
+          id: question.id,
+          answer: question.answer,
+          sub_answer: question.sub_answer,
+        };
+      } else {
+        return {
+          id: question.id,
+          answer: question.answer,
+          sub_answer: null,
+        };
+      }
+    }),
+  }));
+
+  const trueResult = data?.methodology?.map((method: any) => ({
+    id: method.id,
+    question: method.question.map((question: any) => ({
       id: question.id,
-      answer: question.answer,
+      answer: true,
+    })),
+  }));
+
+  const nullResult = data?.methodology?.map((method: any) => ({
+    id: method.id,
+    question: method.question.map((question: any) => ({
+      id: question.id,
+      answer: null,
     })),
   }));
 
@@ -51,11 +79,23 @@ function AdditionalTab({ data }: any) {
   useEffect(() => {
     const extractedData = data?.additional?.map((addition: any) => ({
       id: addition.id,
-      question: addition.question.map((question: any) => ({
-        id: question.id,
-        answer: undefined,
-      })),
+      question: addition.question.map((question: any) => {
+        if (question.sub_answer) {
+          return {
+            id: question.id,
+            answer: undefined,
+            sub_answer: question.sub_answer.fill(undefined),
+          };
+        } else {
+          return {
+            id: question.id,
+            answer: undefined,
+            sub_answer: null,
+          };
+        }
+      }),
     }));
+    console.log('extractedData: ', extractedData);
     setResult(extractedData);
   }, []);
 
@@ -90,18 +130,27 @@ function AdditionalTab({ data }: any) {
             {data?.additional?.map((addition: any, idx: number) => {
               const isCorrect =
                 result && isEqual(result[idx], collectResult[idx]);
+              const isNull =
+                result && isEqual(collectResult[idx], nullResult[idx]);
+              const isTrue = result && isEqual(result[idx], trueResult[idx]);
               return (
                 <React.Fragment key={idx}>
                   {addition?.question?.map((item: any, item_idx: number) => {
                     const selectedAnswer =
                       result?.[idx]?.question?.[item_idx]?.answer;
+                    const subQuestionLen = item?.sub_question
+                      ? item?.sub_question?.length
+                      : 0;
+
                     return (
                       <React.Fragment key={item_idx}>
                         <Tr>
                           {item_idx === 0 && (
                             <Td
                               bgColor={`${COLOR[idx]}.50`}
-                              rowSpan={addition?.question?.length + 2}
+                              rowSpan={
+                                addition?.question?.length + subQuestionLen + 2
+                              }
                             >
                               <Text textAlign="center" whiteSpace="pre-line">
                                 {addition.title}
@@ -113,69 +162,112 @@ function AdditionalTab({ data }: any) {
                             <Text whiteSpace="pre-line">{item.title}</Text>
                           </Td>
                           <Td>
-                            <HStack
-                              spacing="10px"
-                              justifyContent="center"
-                              w="100%"
-                            >
-                              <Center
-                                bgColor={
-                                  selectedAnswer === true
-                                    ? '#000000'
-                                    : '#F5F5F5'
-                                }
-                                w="80px"
-                                h="40px"
-                                borderRadius="full"
-                                cursor="pointer"
-                                onClick={() =>
-                                  selectedAnswer === true
-                                    ? handleSetResult(idx, item_idx, undefined)
-                                    : handleSetResult(idx, item_idx, true)
-                                }
+                            <VStack>
+                              <HStack
+                                spacing="10px"
+                                justifyContent="center"
+                                w="100%"
                               >
-                                <Text
-                                  color={
+                                <Center
+                                  bgColor={
                                     selectedAnswer === true
-                                      ? '#FFFFFF'
-                                      : '#4C4C4C'
+                                      ? '#000000'
+                                      : '#F5F5F5'
+                                  }
+                                  w="80px"
+                                  h="40px"
+                                  borderRadius="full"
+                                  cursor="pointer"
+                                  onClick={() =>
+                                    selectedAnswer === true
+                                      ? handleSetResult(
+                                          idx,
+                                          item_idx,
+                                          undefined,
+                                        )
+                                      : handleSetResult(idx, item_idx, true)
                                   }
                                 >
-                                  예
-                                </Text>
-                              </Center>
-                              <Center
-                                bgColor={
-                                  selectedAnswer === false
-                                    ? '#000000'
-                                    : '#F5F5F5'
-                                }
-                                w="80px"
-                                h="40px"
-                                borderRadius="full"
-                                cursor="pointer"
-                                onClick={() =>
-                                  selectedAnswer === false
-                                    ? handleSetResult(idx, item_idx, undefined)
-                                    : handleSetResult(idx, item_idx, false)
-                                }
-                              >
-                                <Text
-                                  color={
+                                  <Text
+                                    color={
+                                      selectedAnswer === true
+                                        ? '#FFFFFF'
+                                        : '#4C4C4C'
+                                    }
+                                  >
+                                    예
+                                  </Text>
+                                </Center>
+                                <Center
+                                  bgColor={
                                     selectedAnswer === false
-                                      ? '#FFFFFF'
-                                      : '#4C4C4C'
+                                      ? '#000000'
+                                      : '#F5F5F5'
+                                  }
+                                  w="80px"
+                                  h="40px"
+                                  borderRadius="full"
+                                  cursor="pointer"
+                                  onClick={() =>
+                                    selectedAnswer === false
+                                      ? handleSetResult(
+                                          idx,
+                                          item_idx,
+                                          undefined,
+                                        )
+                                      : handleSetResult(idx, item_idx, false)
                                   }
                                 >
-                                  아니오
-                                </Text>
-                              </Center>
-                            </HStack>
+                                  <Text
+                                    color={
+                                      selectedAnswer === false
+                                        ? '#FFFFFF'
+                                        : '#4C4C4C'
+                                    }
+                                  >
+                                    아니오
+                                  </Text>
+                                </Center>
+                              </HStack>
+                              {item.answer === null && (
+                                <Center
+                                  bgColor={
+                                    selectedAnswer === null
+                                      ? '#000000'
+                                      : '#F5F5F5'
+                                  }
+                                  w="170px"
+                                  h="40px"
+                                  borderRadius="full"
+                                  cursor="pointer"
+                                  onClick={() =>
+                                    selectedAnswer === null
+                                      ? handleSetResult(
+                                          idx,
+                                          item_idx,
+                                          undefined,
+                                        )
+                                      : handleSetResult(idx, item_idx, null)
+                                  }
+                                >
+                                  <Text
+                                    color={
+                                      selectedAnswer === null
+                                        ? '#FFFFFF'
+                                        : '#4C4C4C'
+                                    }
+                                  >
+                                    해당없음
+                                  </Text>
+                                </Center>
+                              )}
+                            </VStack>
                           </Td>
                         </Tr>
                       </React.Fragment>
                     );
                   })}
+
                   <Tr bgColor={`${COLOR[idx]}.100`}>
                     <Td colSpan={2}>
                       <Text fontWeight="bold">{addition.result_title}</Text>
@@ -184,9 +276,17 @@ function AdditionalTab({ data }: any) {
                       <Text
                         fontWeight="bold"
                         textAlign="center"
-                        color={isCorrect ? 'black' : 'red'}
+                        color={
+                          isCorrect || (isNull && isTrue) ? 'black' : 'red'
+                        }
                       >
-                        {isCorrect ? '만족' : '불만족'}
+                        {isCorrect
+                          ? isNull
+                            ? '해당없음'
+                            : '만족'
+                          : isNull && isTrue
+                          ? '만족'
+                          : '불만족'}
                       </Text>
                     </Td>
                   </Tr>

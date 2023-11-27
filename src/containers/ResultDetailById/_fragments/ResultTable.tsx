@@ -11,7 +11,7 @@ function ResultTable({ data, params, ...basisProps }: any) {
         {data?.result?.map((inter: any, idx: number) => {
           const value = (
             params?.length > 0 ? inter.formula(params) : 0
-          ).toFixed(3);
+          ).toFixed(0);
           return (
             <Box
               key={idx}
@@ -29,7 +29,7 @@ function ResultTable({ data, params, ...basisProps }: any) {
                   fontWeight="bold"
                   color={value > 0 ? 'black' : 'red'}
                 >
-                  {formatNumberKR(value)}
+                  {value && formatNumberKR(Number(value))}
                 </Text>
                 <Text fontSize="15px" textAlign="right" ml="10px">
                   ({inter.unit})

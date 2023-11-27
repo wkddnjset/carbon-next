@@ -23,7 +23,7 @@ const DATA = [
   {
     id: 5,
     title: '차량별 주행거리(승용)',
-    val: 13018.3333333333,
+    val: 13018.3,
     unit: 'km/년',
     source: '2021 국가교통통계, 국토교통부',
     rowSpan: 3,
@@ -31,13 +31,13 @@ const DATA = [
   {
     id: 6,
     title: '차량별 km당 연료소비량(승용, 휘발유)',
-    val: 0.0852272727272727,
+    val: 0.085,
     unit: 'L/km',
   },
   {
     id: 7,
     title: '차량별 km당 연료소비량(승용, 경유)',
-    val: 0.079155672823219,
+    val: 0.079,
     unit: 'L/km',
   },
   {
@@ -58,7 +58,7 @@ function Sources6() {
         <Thead>
           <Tr>
             <Th>구분</Th>
-            <Th>인자정보</Th>
+            <Th textAlign="center">인자정보</Th>
             <Th isNumeric>값</Th>
             <Th>단위</Th>
             <Th textAlign="center">출처</Th>
@@ -69,11 +69,11 @@ function Sources6() {
             return (
               <Tr key={item.id}>
                 <Td>{item.id}</Td>
-                <Td>{item.title}</Td>
+                <Td textAlign="center">{item.title}</Td>
                 <Td isNumeric>{item.val}</Td>
                 <Td>{item.unit}</Td>
                 {item?.source && (
-                  <Td rowSpan={item.rowSpan} textAlign="center">
+                  <Td rowSpan={item.rowSpan} textAlign="left">
                     {item.source}
                   </Td>
                 )}

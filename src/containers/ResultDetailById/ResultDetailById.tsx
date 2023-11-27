@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
+import Router from 'next/router';
+
 import {
   Box,
   Button,
@@ -7,6 +9,7 @@ import {
   ChakraProps,
   Container,
   Flex,
+  HStack,
   Input,
   Select,
   Text,
@@ -27,6 +30,7 @@ interface ResultDetailByIdProps extends ChakraProps {
 
 function ResultDetailById({ id, ...basisProps }: ResultDetailByIdProps) {
   const [params, setParams] = useState<any>([]);
+  const [selectValue, setSelectValue] = useState<any>(0);
 
   const Item = useMemo(() => {
     return id ? FORMULA.filter((item: any) => item.id === Number(id))[0] : null;
@@ -54,9 +58,6 @@ function ResultDetailById({ id, ...basisProps }: ResultDetailByIdProps) {
         value: Number(input.value),
       }));
     }
-
-    console.log(data);
-
     setParams(data);
   };
 
@@ -132,6 +133,7 @@ function ResultDetailById({ id, ...basisProps }: ResultDetailByIdProps) {
                       bgColor="white"
                       borderRadius="full"
                       h="60px"
+                      onChange={(e) => setSelectValue(e.target.value)}
                     >
                       <option value={83}>농작물, 가축</option>
                       <option value={61}>음료</option>
@@ -153,6 +155,14 @@ function ResultDetailById({ id, ...basisProps }: ResultDetailByIdProps) {
                       <option value={94}>묶음 제품</option>
                       <option value={113}>기타 재료</option>
                     </Select>
+
+                    <Text textAlign="right" mt="10px" fontSize="14px">
+                      선택 값 :{' '}
+                      <Text as="span" fontSize="16px" fontWeight="bold">
+                        {selectValue}
+                      </Text>{' '}
+                      {p.unit}
+                    </Text>
                   </Box>
                 );
               }
@@ -177,17 +187,30 @@ function ResultDetailById({ id, ...basisProps }: ResultDetailByIdProps) {
             })}
           </VStack>
           <Center mt="40px">
-            <Button
-              colorScheme="dark"
-              textAlign="center"
-              h="60px"
-              w="200px"
-              borderRadius="full"
-              size="lg"
-              onClick={submitForm}
-            >
-              결과 확인하기
-            </Button>
+            <HStack>
+              <Button
+                colorScheme="light"
+                textAlign="center"
+                h="60px"
+                w="200px"
+                borderRadius="full"
+                size="lg"
+                onClick={Router.back}
+              >
+                <Text color="black">돌아가기</Text>
+              </Button>
+              <Button
+                colorScheme="dark"
+                textAlign="center"
+                h="60px"
+                w="200px"
+                borderRadius="full"
+                size="lg"
+                onClick={submitForm}
+              >
+                결과 확인하기
+              </Button>
+            </HStack>
           </Center>
         </Box>
 
@@ -228,7 +251,7 @@ function ResultDetailById({ id, ...basisProps }: ResultDetailByIdProps) {
                 (tCO₂)
               </Text>
               <Text fontSize="24px" fontWeight="bold">
-                목표
+                국가 NDC
               </Text>
               <Text fontSize="18px">
                 <Text as="span" fontSize="24px" fontWeight="bold">
@@ -270,7 +293,7 @@ function ResultDetailById({ id, ...basisProps }: ResultDetailByIdProps) {
                 (tCO₂)
               </Text>
               <Text fontSize="24px" fontWeight="bold">
-                목표
+                2050 탄소중립
               </Text>
               <Text fontSize="18px">
                 <Text as="span" fontSize="24px" fontWeight="bold">

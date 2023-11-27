@@ -1,29 +1,26 @@
 export const FORMULA: any = [
   {
     id: 1,
-    const: {
-      default: 2318763.24,
-    },
     params: [
       {
         id: 1,
         title: '공급하거나 판매한 바이오 CNG 양',
         unit: 'Nm³/년',
-        default: 2318763.24,
+        default: 0,
       },
       {
         id: 2,
         title: '설비 운전 화석연료 사용량',
         unit: 'Nm³,L,ton/년',
-        default: 0.0,
+        default: 0,
       },
       {
         id: 3,
         title: 'CNG 운송용 트럭 평균 용량',
         unit: 'km/Truck',
-        default: 200.0,
+        default: 0,
       },
-      { id: 4, title: 'CNG 운송거리', unit: 'Nm³/년', default: 20 },
+      { id: 4, title: 'CNG 운송거리', unit: 'Nm³/년', default: 0 },
     ],
     result: [
       {
@@ -108,10 +105,10 @@ export const FORMULA: any = [
   {
     id: 2,
     params: [
-      { id: 1, title: 'LPG 택시 차량 대수', unit: '대', default: 1 },
-      { id: 2, title: '경유 트럭 차량 대수', unit: '대', default: 1 },
-      { id: 3, title: '경유 버스 차량 대수', unit: '대', default: 1 },
-      { id: 4, title: 'CNG 버스 차량 대수', unit: '대', default: 1 },
+      { id: 1, title: 'LPG 택시 차량 대수', unit: '대', default: 0 },
+      { id: 2, title: '경유 트럭 차량 대수', unit: '대', default: 0 },
+      { id: 3, title: '경유 버스 차량 대수', unit: '대', default: 0 },
+      { id: 4, title: 'CNG 버스 차량 대수', unit: '대', default: 0 },
     ],
     result: [
       {
@@ -211,10 +208,10 @@ export const FORMULA: any = [
   {
     id: 3,
     params: [
-      { id: 1, title: '승용 차량 대수', unit: '대', default: 1 },
-      { id: 2, title: '승합 차량 대수', unit: '대', default: 1 },
-      { id: 4, title: '화물 차량 대수', unit: '대', default: 1 },
-      { id: 5, title: '전기 버스 대체 대수', unit: '대', default: 1 },
+      { id: 1, title: '승용 차량 대수', unit: '대', default: 0 },
+      { id: 2, title: '승합 차량 대수', unit: '대', default: 0 },
+      { id: 4, title: '화물 차량 대수', unit: '대', default: 0 },
+      { id: 5, title: '전기 버스 대체 대수', unit: '대', default: 0 },
     ],
     result: [
       {
@@ -569,8 +566,8 @@ export const FORMULA: any = [
   {
     id: 4,
     params: [
-      { id: 1, title: '승용 차량 대수', unit: '대', default: 1 },
-      { id: 2, title: '승합 차량 대수', unit: '대', default: 1 },
+      { id: 1, title: '승용 차량 대수', unit: '대', default: 0 },
+      { id: 2, title: '승합 차량 대수', unit: '대', default: 0 },
     ],
     result: [
       {
@@ -792,9 +789,9 @@ export const FORMULA: any = [
         id: 1,
         title: '수소전기차량(승용) 대수',
         unit: '대',
-        default: 1,
+        default: 0,
       },
-      { id: 2, title: '수소전기차량(화물) 대수', unit: '대', default: 1 },
+      { id: 2, title: '수소전기차량(화물) 대수', unit: '대', default: 0 },
     ],
     result: [
       {
@@ -979,8 +976,8 @@ export const FORMULA: any = [
   {
     id: 6,
     params: [
-      { id: 1, title: '경유 승용 차량 대수', unit: '대', default: 100 },
-      { id: 2, title: '휘발유 승용 차량 대수', unit: '대', default: 100 },
+      { id: 1, title: '경유 승용 차량 대수', unit: '대', default: 0 },
+      { id: 2, title: '휘발유 승용 차량 대수', unit: '대', default: 0 },
     ],
     result: [
       {
@@ -1051,13 +1048,13 @@ export const FORMULA: any = [
         id: 1,
         title: '공유자전거 총 이용자 수',
         unit: '명',
-        default: 43536926,
+        default: 0,
       },
       {
         id: 2,
         title: '전기 자전거 총 이동거리',
         unit: 'km',
-        default: 9697513.64078351,
+        default: 0,
       },
     ],
     result: [
@@ -1352,20 +1349,20 @@ export const FORMULA: any = [
         id: 1,
         title: '공항특수차량 화석연료 연간 사용량',
         unit: 'kg,L,Nm³/년',
-        default: 100,
+        default: 0,
       },
       {
         id: 2,
         title: '공항 특수차량 연간 가동시간',
         unit: 'hours/년',
-        default: 20,
+        default: 0,
       },
-      { id: 3, title: '공항특수차량 물동량', unit: 'ton', default: 10 },
+      { id: 3, title: '공항특수차량 물동량', unit: 'ton', default: 0 },
       {
         id: 4,
         title: '전기 공항특수차량 전력 사용량',
         unit: 'MWh/년',
-        default: 10,
+        default: 0,
       },
     ],
     result: [
@@ -1415,15 +1412,15 @@ export const FORMULA: any = [
         id: 1,
         title: '선박으로 운송된 화물의 양',
         unit: 'ton',
-        default: 1000,
+        default: 0,
       },
       {
         id: 2,
         title: '화물 운송 기본배출계수(화물유형 선택)',
         unit: 'gCO₂/tkm',
-        default: 57,
+        default: 0,
       },
-      { id: 3, title: '선박으로 반송된 화물의 양', unit: 'ton', default: 1000 },
+      { id: 3, title: '선박으로 반송된 화물의 양', unit: 'ton', default: 0 },
     ],
     result: [
       {
@@ -1476,19 +1473,19 @@ export const FORMULA: any = [
         id: 1,
         title: '운송되는 화석연료의 양',
         unit: 'ton',
-        default: 1000,
+        default: 0,
       },
       {
         id: 2,
         title: '파이프라인 시스템 전력 사용량',
         unit: 'kWh',
-        default: 100,
+        default: 0,
       },
       {
         id: 3,
         title: '파이프라인 시스템 화석연료 사용량',
         unit: 'kg,l,Nm³/년',
-        default: 100,
+        default: 0,
       },
     ],
     result: [
@@ -1529,9 +1526,9 @@ export const FORMULA: any = [
   {
     id: 11,
     params: [
-      { id: 1, title: '경유 승용 차량 대수', unit: '대', default: 1 },
-      { id: 2, title: '휘발유 승용 차량 대수', unit: '대', default: 1 },
-      { id: 3, title: '승합 차량 대수', unit: '대', default: 1 },
+      { id: 1, title: '경유 승용 차량 대수', unit: '대', default: 0 },
+      { id: 2, title: '휘발유 승용 차량 대수', unit: '대', default: 0 },
+      { id: 3, title: '승합 차량 대수', unit: '대', default: 0 },
     ],
     result: [
       {
@@ -1630,21 +1627,21 @@ export const FORMULA: any = [
         id: 1,
         title: '공급하거나 판매한 바이오 CNG 양',
         unit: 'Nm³/년',
-        default: 2318763.24,
+        default: 0,
       },
       {
         id: 2,
         title: '설비 운전 화석연료 사용량',
         unit: 'Nm³,L,ton/년',
-        default: 0.0,
+        default: 0,
       },
       {
         id: 3,
         title: 'CNG 운송용 트럭 평균 용량',
         unit: 'km/Truck',
-        default: 200.0,
+        default: 0,
       },
-      { id: 4, title: 'CNG 운송거리', unit: 'Nm³/년', default: 20 },
+      { id: 4, title: 'CNG 운송거리', unit: 'Nm³/년', default: 0 },
     ],
     result: [
       {
@@ -1729,11 +1726,11 @@ export const FORMULA: any = [
   {
     id: 13,
     params: [
-      { id: 1, title: '경유 승용 차량 대수 ', unit: '대', default: 1 },
-      { id: 2, title: '휘발유 승용 차량 대수', unit: '대', default: 1 },
-      { id: 4, title: '승합 차량 대수', unit: '대', default: 1 },
-      { id: 5, title: '화물 차량 대수', unit: '대', default: 1 },
-      { id: 5, title: '기술 선택', unit: 'Nm³', default: 1 },
+      { id: 1, title: '경유 승용 차량 대수 ', unit: '대', default: 0 },
+      { id: 2, title: '휘발유 승용 차량 대수', unit: '대', default: 0 },
+      { id: 4, title: '승합 차량 대수', unit: '대', default: 0 },
+      { id: 5, title: '화물 차량 대수', unit: '대', default: 0 },
+      { id: 5, title: '기술 선택', unit: 'Nm³', default: 0 },
     ],
     result: [
       {
@@ -1772,10 +1769,10 @@ export const FORMULA: any = [
         id: 1,
         title: '승용 차량 충전량 합계',
         unit: 'kWh/년',
-        default: 6000,
+        default: 0,
       },
-      { id: 2, title: '승합 차량 충전량 합계', unit: 'kWh/년', default: 6000 },
-      { id: 4, title: '화물 차량 충전량 합계', unit: 'kWh/년', default: 6000 },
+      { id: 2, title: '승합 차량 충전량 합계', unit: 'kWh/년', default: 0 },
+      { id: 4, title: '화물 차량 충전량 합계', unit: 'kWh/년', default: 0 },
     ],
     result: [
       {
@@ -2249,19 +2246,19 @@ export const FORMULA: any = [
   {
     id: 15,
     params: [
-      { id: 1, title: '승합 차량 대수', unit: '대', default: 1 },
-      { id: 2, title: '화물 차량 대수', unit: '대', default: 1 },
+      { id: 1, title: '승합 차량 대수', unit: '대', default: 0 },
+      { id: 2, title: '화물 차량 대수', unit: '대', default: 0 },
       {
         id: 3,
         title: '승합 차량 화석연료 소비량(주유량 또는 구매량)',
         unit: 'L/년',
-        default: 1000,
+        default: 0,
       },
       {
         id: 4,
         title: '화물 차량 화석연료 소비량(주유량 또는 구매량)',
         unit: 'L/년',
-        default: 1000,
+        default: 0,
       },
     ],
     result: [

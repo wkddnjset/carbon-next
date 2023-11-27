@@ -26,7 +26,7 @@ const DATA = [
   {
     id: 8,
     title: '재배치 차량 km당 연료사용량(경유)',
-    val: 0.113636363636364,
+    val: 0.114,
     unit: 'L/km',
     source: '2021 국가교통통계, 국토교통부',
     rowSpan: 2,
@@ -34,7 +34,7 @@ const DATA = [
   {
     id: 9,
     title: '재배치 차량 km당 연료사용량(LPG)',
-    val: 0.15625,
+    val: 0.156,
     unit: 'L/km',
   },
   {
@@ -64,7 +64,7 @@ function Sources7() {
         <Thead>
           <Tr>
             <Th>구분</Th>
-            <Th>인자정보</Th>
+            <Th textAlign="center">인자정보</Th>
             <Th isNumeric>값</Th>
             <Th>단위</Th>
             <Th textAlign="center">출처</Th>
@@ -75,11 +75,11 @@ function Sources7() {
             return (
               <Tr key={item.id}>
                 <Td>{item.id}</Td>
-                <Td>{item.title}</Td>
+                <Td textAlign="center">{item.title}</Td>
                 <Td isNumeric>{item.val}</Td>
                 <Td>{item.unit}</Td>
                 {item?.source && (
-                  <Td rowSpan={item.rowSpan} textAlign="center">
+                  <Td rowSpan={item.rowSpan} textAlign="left">
                     {item.source}
                   </Td>
                 )}

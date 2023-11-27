@@ -24,7 +24,7 @@ const DATA = [
   {
     id: 6,
     title: '혐기성 처리과정으로부터 CH₄ 누출량',
-    val: 1846.934,
+    val: 1846.93,
     unit: 'tCO₂-eq/년',
     source:
       '강원바이오에너지 바이오 CNG 생산 및 자동차 연료 이용을 통한 온실가스 감축 사업',
@@ -57,7 +57,7 @@ function Sources12() {
         <Thead>
           <Tr>
             <Th>구분</Th>
-            <Th>인자정보</Th>
+            <Th textAlign="center">인자정보</Th>
             <Th isNumeric>값</Th>
             <Th>단위</Th>
             <Th textAlign="center">출처</Th>
@@ -68,11 +68,11 @@ function Sources12() {
             return (
               <Tr key={item.id}>
                 <Td>{item.id}</Td>
-                <Td>{item.title}</Td>
+                <Td textAlign="center">{item.title}</Td>
                 <Td isNumeric>{item.val}</Td>
                 <Td>{item.unit}</Td>
                 {item?.source && (
-                  <Td rowSpan={item.rowSpan} textAlign="center">
+                  <Td rowSpan={item.rowSpan} textAlign="left">
                     {item.source}
                   </Td>
                 )}

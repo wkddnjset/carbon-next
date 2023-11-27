@@ -34,7 +34,7 @@ function Sources9() {
         <Thead>
           <Tr>
             <Th>구분</Th>
-            <Th>인자정보</Th>
+            <Th textAlign="center">인자정보</Th>
             <Th isNumeric>값</Th>
             <Th>단위</Th>
             <Th textAlign="center">출처</Th>
@@ -45,11 +45,11 @@ function Sources9() {
             return (
               <Tr key={item.id}>
                 <Td>{item.id}</Td>
-                <Td>{item.title}</Td>
+                <Td textAlign="center">{item.title}</Td>
                 <Td isNumeric>{item.val}</Td>
                 <Td>{item.unit}</Td>
                 {item?.source && (
-                  <Td rowSpan={item.rowSpan} textAlign="center">
+                  <Td rowSpan={item.rowSpan} textAlign="left">
                     {item.source}
                   </Td>
                 )}

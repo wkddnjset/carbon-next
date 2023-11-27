@@ -43,7 +43,7 @@ const DATA = [
     id: 11,
     title:
       '바이오가스 및 바이오 CNG 제조, 정제, 압축, 저장 및 수송과정에서의 CH₄ 누출량',
-    val: 625.762935,
+    val: 625.8,
     unit: 'tCO₂-eq/년',
   },
   { id: 12, title: '메탄 생산량', val: 2383858.8, unit: 'Nm³/년' },
@@ -57,10 +57,10 @@ function Sources1() {
         <Thead>
           <Tr>
             <Th>구분</Th>
-            <Th>인자정보</Th>
+            <Th textAlign="center">인자정보</Th>
             <Th isNumeric>값</Th>
             <Th>단위</Th>
-            <Th textAlign="center">출처</Th>
+            <Th textAlign="left">출처</Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -68,11 +68,11 @@ function Sources1() {
             return (
               <Tr key={item.id}>
                 <Td>{item.id}</Td>
-                <Td>{item.title}</Td>
+                <Td textAlign="center">{item.title}</Td>
                 <Td isNumeric>{item.val}</Td>
                 <Td>{item.unit}</Td>
                 {item?.source && (
-                  <Td rowSpan={item.rowSpan} textAlign="center">
+                  <Td rowSpan={item.rowSpan} textAlign="left">
                     {item.source}
                   </Td>
                 )}

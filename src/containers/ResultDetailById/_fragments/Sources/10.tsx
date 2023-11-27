@@ -22,7 +22,7 @@ const DATA = [
   {
     id: 4,
     title: '베이스라인 운송거리',
-    val: 260.833333333333,
+    val: 260.83,
     unit: 'km',
     source: '화물운송시장 동향 보고서, 한국교통연구원',
     rowSpan: 1,
@@ -44,7 +44,7 @@ function Sources10() {
         <Thead>
           <Tr>
             <Th>구분</Th>
-            <Th>인자정보</Th>
+            <Th textAlign="center">인자정보</Th>
             <Th isNumeric>값</Th>
             <Th>단위</Th>
             <Th textAlign="center">출처</Th>
@@ -55,11 +55,11 @@ function Sources10() {
             return (
               <Tr key={item.id}>
                 <Td>{item.id}</Td>
-                <Td>{item.title}</Td>
+                <Td textAlign="center">{item.title}</Td>
                 <Td isNumeric>{item.val}</Td>
                 <Td>{item.unit}</Td>
                 {item?.source && (
-                  <Td rowSpan={item.rowSpan} textAlign="center">
+                  <Td rowSpan={item.rowSpan} textAlign="left">
                     {item.source}
                   </Td>
                 )}

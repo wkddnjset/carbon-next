@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 import { Bar } from 'react-chartjs-2';
 
 import {
@@ -33,12 +35,21 @@ function BarChart({ id, result, goal, ...basisProps }: any) {
       },
     },
   };
+
+  const dataset = useMemo(() => {
+    if (goal > result) {
+      return [(result / goal) * 100, (goal / goal) * 100];
+    } else {
+      return [(result / result) * 100, (goal / result) * 100];
+    }
+  }, [result, goal]);
+
   const data = {
     labels: ['예상 감축량', '목표'],
     datasets: [
       {
         backgroundColor: ['rgba(255, 159, 64, 0.2)', 'rgba(255, 99, 132, 0.2)'],
-        data: [result, goal],
+        data: dataset,
         borderWidth: 1,
       },
     ],

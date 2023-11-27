@@ -45,6 +45,22 @@ function MethodologyTab({ data }: any) {
     })),
   }));
 
+  const trueResult = data?.methodology?.map((method: any) => ({
+    id: method.id,
+    question: method.question.map((question: any) => ({
+      id: question.id,
+      answer: true,
+    })),
+  }));
+
+  const nullResult = data?.methodology?.map((method: any) => ({
+    id: method.id,
+    question: method.question.map((question: any) => ({
+      id: question.id,
+      answer: null,
+    })),
+  }));
+
   useEffect(() => {
     const isCorrect = isEqual(result, collectResult);
     dispatch({ type: 'SET_METHOD_IS_CORRECT', payload: isCorrect });
@@ -92,6 +108,9 @@ function MethodologyTab({ data }: any) {
             {data?.methodology?.map((method: any, idx: number) => {
               const isCorrect =
                 result && isEqual(result[idx], collectResult[idx]);
+              const isNull =
+                result && isEqual(collectResult[idx], nullResult[idx]);
+              const isTrue = result && isEqual(result[idx], trueResult[idx]);
               return (
                 <React.Fragment key={idx}>
                   {method?.question?.map((item: any, item_idx: number) => {
@@ -249,9 +268,17 @@ function MethodologyTab({ data }: any) {
                       <Text
                         fontWeight="bold"
                         textAlign="center"
-                        color={isCorrect ? 'black' : 'red'}
+                        color={
+                          isCorrect || (isNull && isTrue) ? 'black' : 'red'
+                        }
                       >
-                        {isCorrect ? '만족' : '불만족'}
+                        {isCorrect
+                          ? isNull
+                            ? '해당없음'
+                            : '만족'
+                          : isNull && isTrue
+                          ? '만족'
+                          : '불만족'}
                       </Text>
                     </Td>
                   </Tr>

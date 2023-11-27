@@ -29,13 +29,13 @@ function DoughnutChart({ id, result, goal }: any) {
   const dataset = useMemo(() => {
     if (goal > result) {
       return [
-        [goal, 0],
-        [result, goal - result],
+        [(goal / goal) * 100, 0],
+        [(result / goal) * 100, ((goal - result) / goal) * 100],
       ];
     } else {
       return [
-        [goal, result - goal],
-        [result, 0],
+        [(goal / result) * 100, ((result - goal) / result) * 100],
+        [(result / result) * 100, 0],
       ];
     }
   }, [result, goal]);

@@ -52,7 +52,7 @@ const DATA = [
     title: '전기자전거 충전 기본배출계수',
     val: 0.015,
     unit: 'kWh/km',
-    source: '방법론',
+    source: '해당 방법론 기본계수',
     rowSpan: 1,
   },
 ];

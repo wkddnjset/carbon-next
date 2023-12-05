@@ -33,6 +33,15 @@ function BarChart({ id, result, goal, ...basisProps }: any) {
         fontSize: 40,
         fontStyle: 'bold',
       },
+      tooltip: {
+        callbacks: {
+          label: function (context: any) {
+            const label = context.dataset.label || '';
+            const value = context.raw;
+            return `${value}%`;
+          },
+        },
+      },
     },
   };
 

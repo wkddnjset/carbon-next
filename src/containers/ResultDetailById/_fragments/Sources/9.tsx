@@ -12,7 +12,7 @@ const DATA = [
   {
     id: 1,
     title: '베이스라인 운송거리',
-    val: 260.833333333333,
+    val: 260.83,
     unit: 'km',
     source: '화물운송시장 동향 보고서, 한국교통연구원',
     rowSpan: 1,

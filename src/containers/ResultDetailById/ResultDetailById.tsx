@@ -195,7 +195,7 @@ function ResultDetailById({ id, ...basisProps }: ResultDetailByIdProps) {
                 w="200px"
                 borderRadius="full"
                 size="lg"
-                onClick={Router.back}
+                onClick={() => Router.push('/more')}
               >
                 <Text color="black">돌아가기</Text>
               </Button>

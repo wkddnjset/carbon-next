@@ -27,7 +27,7 @@ function ResultTable({ data, params, ...basisProps }: any) {
                 <Text
                   fontSize="30px"
                   fontWeight="bold"
-                  color={value > 0 ? 'black' : 'red'}
+                  color={value < 0 ? 'red' : 'black'}
                 >
                   {value && formatNumberKR(Number(value))}
                 </Text>

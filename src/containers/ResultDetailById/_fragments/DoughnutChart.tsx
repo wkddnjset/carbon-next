@@ -22,6 +22,13 @@ function DoughnutChart({ id, result, goal }: any) {
         filter: function (tooltipItem: any) {
           return tooltipItem.dataIndex !== 1;
         },
+        callbacks: {
+          label: function (context: any) {
+            const label = context.dataset.label || '';
+            const value = context.raw;
+            return ` ${label} : ${value}%`;
+          },
+        },
       },
     },
   };

@@ -78,7 +78,7 @@ const DATA = [
     id: 10,
     title: '수소 생산 배출계수',
     val: 0.0033,
-    unit: 'tCO2/kgH2',
+    unit: 'tCO₂/kgH₂',
     source:
       '2019 Refinement to the 2006 IPCC Guideline for National Greenhouse Gas Inventories',
     rowSpan: 1,

@@ -18,7 +18,7 @@ export const FORMULA: any = [
         id: 3,
         title: 'CNG 운송용 트럭 평균 용량',
         unit: 'km/Truck',
-        default: 0,
+        default: 1,
       },
       { id: 4, title: 'CNG 운송거리', unit: 'Nm³/년', default: 0 },
     ],

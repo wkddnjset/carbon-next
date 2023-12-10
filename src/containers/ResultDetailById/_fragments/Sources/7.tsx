@@ -8,6 +8,8 @@ import {
   Tr,
 } from '@chakra-ui/react';
 
+import { formatNumberKR } from '@/utils/format/format-number-kr';
+
 const DATA = [
   {
     id: 1,
@@ -40,13 +42,13 @@ const DATA = [
   {
     id: 10,
     title: '자가용으로부터 대체된 이용자의 평균 이동거리',
-    val: '',
+    val: null,
     unit: '',
     source: '따릉이 도입을 통한 온실가스 감축사업, 티머니, 2023',
     rowSpan: 3,
   },
-  { id: 11, title: '대체된 이용자의 점유율', val: '', unit: '' },
-  { id: 12, title: '재배치 차량의 주행거리', val: '', unit: '' },
+  { id: 11, title: '대체된 이용자의 점유율', val: null, unit: '' },
+  { id: 12, title: '재배치 차량의 주행거리', val: null, unit: '' },
   {
     id: 13,
     title: '전기자전거 충전 기본배출계수',
@@ -76,7 +78,9 @@ function Sources7() {
               <Tr key={item.id}>
                 <Td>{item.id}</Td>
                 <Td textAlign="center">{item.title}</Td>
-                <Td isNumeric>{item.val}</Td>
+                <Td isNumeric>
+                  {item.val ? formatNumberKR(Number(item.val)) : ''}
+                </Td>
                 <Td>{item.unit}</Td>
                 {item?.source && (
                   <Td rowSpan={item.rowSpan} textAlign="left">

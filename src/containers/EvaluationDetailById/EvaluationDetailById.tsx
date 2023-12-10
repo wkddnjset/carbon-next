@@ -119,8 +119,8 @@ function EvaluationDetailById({
               right="10%"
             />
           </Flex>
-          {selectedTab === 1 && <MethodologyTab data={Item} />}
-          {selectedTab === 2 && <AdditionalTab data={Item} />}
+          {selectedTab === 1 && <MethodologyTab id={id} />}
+          {selectedTab === 2 && <AdditionalTab id={id} />}
           <Button
             position="fixed"
             bottom="20px"

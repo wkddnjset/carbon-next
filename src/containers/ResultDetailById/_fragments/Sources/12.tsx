@@ -8,6 +8,8 @@ import {
   Tr,
 } from '@chakra-ui/react';
 
+import { formatNumberKR } from '@/utils/format/format-number-kr';
+
 const DATA = [
   {
     id: 1,
@@ -43,7 +45,7 @@ const DATA = [
     id: 11,
     title:
       '바이오가스 및 바이오 CNG 제조·정제·압축·저장 및 수송과정에서의 CH₄ 누출량',
-    val: 0,
+    val: 625.8,
     unit: 'tCO₂-eq/년',
   },
   { id: 12, title: '메탄 생산량', val: 2383858.8, unit: 'Nm³/년' },
@@ -69,7 +71,7 @@ function Sources12() {
               <Tr key={item.id}>
                 <Td>{item.id}</Td>
                 <Td textAlign="center">{item.title}</Td>
-                <Td isNumeric>{item.val}</Td>
+                <Td isNumeric>{formatNumberKR(item.val)}</Td>
                 <Td>{item.unit}</Td>
                 {item?.source && (
                   <Td rowSpan={item.rowSpan} textAlign="left">

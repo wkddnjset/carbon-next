@@ -8,6 +8,8 @@ import {
   Tr,
 } from '@chakra-ui/react';
 
+import { formatNumberKR } from '@/utils/format/format-number-kr';
+
 const DATA = [
   {
     id: 1,
@@ -56,7 +58,7 @@ function Sources10() {
               <Tr key={item.id}>
                 <Td>{item.id}</Td>
                 <Td textAlign="center">{item.title}</Td>
-                <Td isNumeric>{item.val}</Td>
+                <Td isNumeric>{formatNumberKR(item.val)}</Td>
                 <Td>{item.unit}</Td>
                 {item?.source && (
                   <Td rowSpan={item.rowSpan} textAlign="left">

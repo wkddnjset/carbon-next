@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import {
   Accordion,
@@ -22,13 +22,18 @@ import {
 
 import { useEvaluationDetailPageContext } from '@/contexts/pages/evaluationDetail/useEvaluationDetailPageContext';
 
+import { DATA } from '@/constants/data';
 import isEqual from '@/utils/isEqual';
 
 const COLOR = ['red', 'orange', 'yellow'];
 
-function AdditionalTab({ data }: any) {
+function AdditionalTab({ id }: any) {
   const dispatch = useEvaluationDetailPageContext((ctx) => ctx.dispatch);
   const [result, setResult] = useState<any>([]);
+
+  const data: any = useMemo(() => {
+    return id ? DATA.filter((item) => item.id === Number(id))[0] : null;
+  }, [id]);
 
   const handleSetResult = (idx: number, item_idx: number, value: any) => {
     const current = [...result];
@@ -38,34 +43,23 @@ function AdditionalTab({ data }: any) {
 
   const collectResult = data?.additional?.map((addition: any) => ({
     id: addition.id,
-    question: addition.question.map((question: any) => {
-      if (question.sub_answer) {
-        return {
-          id: question.id,
-          answer: question.answer,
-          sub_answer: question.sub_answer,
-        };
-      } else {
-        return {
-          id: question.id,
-          answer: question.answer,
-          sub_answer: null,
-        };
-      }
-    }),
+    question: addition.question.map((question: any) => ({
+      id: question.id,
+      answer: question.answer,
+    })),
   }));
 
-  const trueResult = data?.methodology?.map((method: any) => ({
-    id: method.id,
-    question: method.question.map((question: any) => ({
+  const trueResult = data?.additional?.map((addition: any) => ({
+    id: addition.id,
+    question: addition.question.map((question: any) => ({
       id: question.id,
       answer: true,
     })),
   }));
 
-  const nullResult = data?.methodology?.map((method: any) => ({
-    id: method.id,
-    question: method.question.map((question: any) => ({
+  const nullResult = data?.additional?.map((addition: any) => ({
+    id: addition.id,
+    question: addition.question.map((question: any) => ({
       id: question.id,
       answer: null,
     })),
@@ -79,25 +73,13 @@ function AdditionalTab({ data }: any) {
   useEffect(() => {
     const extractedData = data?.additional?.map((addition: any) => ({
       id: addition.id,
-      question: addition.question.map((question: any) => {
-        if (question.sub_answer) {
-          return {
-            id: question.id,
-            answer: undefined,
-            sub_answer: question.sub_answer.fill(undefined),
-          };
-        } else {
-          return {
-            id: question.id,
-            answer: undefined,
-            sub_answer: null,
-          };
-        }
-      }),
+      question: addition.question.map((question: any) => ({
+        id: question.id,
+        answer: undefined,
+      })),
     }));
-    console.log('extractedData: ', extractedData);
     setResult(extractedData);
-  }, []);
+  }, [data]);
 
   return (
     <Box mt="40px">
@@ -138,19 +120,13 @@ function AdditionalTab({ data }: any) {
                   {addition?.question?.map((item: any, item_idx: number) => {
                     const selectedAnswer =
                       result?.[idx]?.question?.[item_idx]?.answer;
-                    const subQuestionLen = item?.sub_question
-                      ? item?.sub_question?.length
-                      : 0;
-
                     return (
                       <React.Fragment key={item_idx}>
                         <Tr>
                           {item_idx === 0 && (
                             <Td
                               bgColor={`${COLOR[idx]}.50`}
-                              rowSpan={
-                                addition?.question?.length + subQuestionLen + 2
-                              }
+                              rowSpan={addition?.question?.length + 2}
                             >
                               <Text textAlign="center" whiteSpace="pre-line">
                                 {addition.title}
@@ -301,7 +277,7 @@ function AdditionalTab({ data }: any) {
                             <AccordionIcon ml="10px" />
                           </AccordionButton>
                           <AccordionPanel p="20px">
-                            <Text whiteSpace="pre-line">
+                            <Text whiteSpace="pre-line" wordBreak="break-word">
                               {addition.comment}
                               {`
                               

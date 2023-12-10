@@ -883,7 +883,7 @@ export const FORMULA: any = [
         unit: 'tCO₂-eq/년',
         formula: (params: any) => {
           console.log(params);
-          return 108868.54192185 * 0.0033;
+          return 82351.3208692185 * 0.0033;
         },
       },
       {
@@ -967,7 +967,7 @@ export const FORMULA: any = [
                 Math.pow(0.99, 10) *
                 params[1].value) /
               10 -
-            108868.54192185 * 0.0033
+            82351.3208692185 * 0.0033
           );
         },
       },
@@ -1730,7 +1730,6 @@ export const FORMULA: any = [
       { id: 2, title: '휘발유 승용 차량 대수', unit: '대', default: 0 },
       { id: 4, title: '승합 차량 대수', unit: '대', default: 0 },
       { id: 5, title: '화물 차량 대수', unit: '대', default: 0 },
-      { id: 5, title: '기술 선택', unit: 'Nm³', default: 0 },
     ],
     result: [
       {
@@ -1739,7 +1738,29 @@ export const FORMULA: any = [
         unit: 'tCO₂-eq/년',
         formula: (params: any) => {
           console.log(params);
-          return 0;
+          return (
+            // 승용차량 연평균 베이스라인 배출량 (경유)
+            13018.3333333333 *
+              (0.079155672823219 * 35.2 * 73.2) *
+              params[1].value *
+              Math.pow(10, -6) *
+              params[0].value +
+            // 승용차량 연평균 베이스라인 배출량 (휘발유)
+            13018.3333333333 *
+              (0.0852272727272727 * 30.4 * 71.6) *
+              Math.pow(10, -6) *
+              params[1].value +
+            // 승합차량 연평균 베이스라인 배출량
+            19916.8333333333 *
+              (0.102040816326531 * 35.2 * 73.2) *
+              Math.pow(10, -6) *
+              params[2].value +
+            // 화물차량 연평균 베이스라인 배출량
+            1352160 *
+              ((0.107142857142857 * 35.2 * 73.2) / 52) *
+              Math.pow(10, -6) *
+              params[3].value
+          );
         },
       },
       {
@@ -1747,8 +1768,28 @@ export const FORMULA: any = [
         title: '연평균 사업 배출량',
         unit: 'tCO₂-eq/년',
         formula: (params: any) => {
-          console.log(params);
-          return 0;
+          return (
+            // 승용차량 연평균 사업 배출량(경유)
+            13018.3333333333 *
+              (0.075 * 35.2 * 73.2) *
+              params[0].value *
+              Math.pow(10, -6) +
+            // 승용차량 연평균 사업 배출량(휘발유)
+            13018.3333333333 *
+              (0.081 * 30.4 * 71.6) *
+              Math.pow(10, -6) *
+              params[1].value +
+            // 승합차량 연평균 사업 배출량
+            19916.8333333333 *
+              (0.1 * 35.2 * 73.2) *
+              Math.pow(10, -6) *
+              params[2].value +
+            // 화물 차량 연평균 사업 배출량
+            1352160 *
+              ((0.103 * 35.2 * 73.2) / 52.0) *
+              Math.pow(10, -6) *
+              params[3].value
+          );
         },
       },
       {
@@ -1756,8 +1797,49 @@ export const FORMULA: any = [
         title: '연평균 온실가스 배출 감축량',
         unit: 'tCO₂-eq/년',
         formula: (params: any) => {
-          console.log(params);
-          return 0;
+          return (
+            // 승용차량 연평균 베이스라인 배출량 (경유)
+            13018.3333333333 *
+              (0.079155672823219 * 35.2 * 73.2) *
+              params[1].value *
+              Math.pow(10, -6) *
+              params[0].value +
+            // 승용차량 연평균 베이스라인 배출량 (휘발유)
+            13018.3333333333 *
+              (0.0852272727272727 * 30.4 * 71.6) *
+              Math.pow(10, -6) *
+              params[1].value +
+            // 승합차량 연평균 베이스라인 배출량
+            19916.8333333333 *
+              (0.102040816326531 * 35.2 * 73.2) *
+              Math.pow(10, -6) *
+              params[2].value +
+            // 화물차량 연평균 베이스라인 배출량
+            1352160 *
+              ((0.107142857142857 * 35.2 * 73.2) / 52) *
+              Math.pow(10, -6) *
+              params[3].value -
+            // 승용차량 연평균 사업 배출량(경유)
+            (13018.3333333333 *
+              (0.075 * 35.2 * 73.2) *
+              params[0].value *
+              Math.pow(10, -6) +
+              // 승용차량 연평균 사업 배출량(휘발유)
+              13018.3333333333 *
+                (0.081 * 30.4 * 71.6) *
+                Math.pow(10, -6) *
+                params[1].value +
+              // 승합차량 연평균 사업 배출량
+              19916.8333333333 *
+                (0.1 * 35.2 * 73.2) *
+                Math.pow(10, -6) *
+                params[2].value +
+              // 화물 차량 연평균 사업 배출량
+              1352160 *
+                ((0.103 * 35.2 * 73.2) / 52.0) *
+                Math.pow(10, -6) *
+                params[3].value)
+          );
         },
       },
     ],

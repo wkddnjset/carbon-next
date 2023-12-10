@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import {
   Accordion,
@@ -22,14 +22,16 @@ import {
 
 import { useEvaluationDetailPageContext } from '@/contexts/pages/evaluationDetail/useEvaluationDetailPageContext';
 
+import { DATA } from '@/constants/data';
 import isEqual from '@/utils/isEqual';
 
 const COLOR = ['cyan', 'purple', 'blue', 'pink'];
 
-function MethodologyTab({ data }: any) {
-  // const state = useEvaluationDetailPageContext((ctx) => ctx.state.);
+function Methodology14() {
   const dispatch = useEvaluationDetailPageContext((ctx) => ctx.dispatch);
   const [result, setResult] = useState<any>([]);
+
+  const data: any = DATA.filter((item) => item.id === 14)[0];
 
   const handleSetResult = (idx: number, item_idx: number, value: any) => {
     const current = [...result];
@@ -122,7 +124,7 @@ function MethodologyTab({ data }: any) {
                           {item_idx === 0 && (
                             <Td
                               bgColor={`${COLOR[idx]}.50`}
-                              rowSpan={method?.question?.length * 2 + 1}
+                              rowSpan={method?.question?.length * 2 + 9}
                               whiteSpace="pre-line"
                               textAlign="center"
                             >
@@ -238,25 +240,66 @@ function MethodologyTab({ data }: any) {
                             </VStack>
                           </Td>
                         </Tr>
-                        <Tr>
-                          <Td colSpan={3} p="0px">
-                            <Accordion allowToggle>
-                              <AccordionItem bgColor="#FBFBFB">
-                                <AccordionButton minH="50px">
-                                  <Box as="span" textAlign="left">
-                                    해설보기
-                                  </Box>
-                                  <AccordionIcon ml="10px" />
-                                </AccordionButton>
-                                <AccordionPanel p="20px">
+                        {item.comment && (
+                          <Tr>
+                            <Td colSpan={3} p="0px">
+                              <Accordion allowToggle>
+                                <AccordionItem bgColor="#FBFBFB">
+                                  <AccordionButton minH="50px">
+                                    <Box as="span" textAlign="left">
+                                      해설보기
+                                    </Box>
+                                    <AccordionIcon ml="10px" />
+                                  </AccordionButton>
+                                  <AccordionPanel p="20px">
+                                    <Text
+                                      whiteSpace="pre-line"
+                                      wordBreak="break-word"
+                                    >
+                                      {item.comment}
+                                    </Text>
+                                  </AccordionPanel>
+                                </AccordionItem>
+                              </Accordion>
+                            </Td>
+                          </Tr>
+                        )}
+                        {item?.sub_item?.map((subItem: any, idx: number) => {
+                          return (
+                            <React.Fragment key={idx}>
+                              <Tr>
+                                <Td>{subItem.id}</Td>
+                                <Td>
                                   <Text whiteSpace="pre-line">
-                                    {item.comment}
+                                    {subItem.title}
                                   </Text>
-                                </AccordionPanel>
-                              </AccordionItem>
-                            </Accordion>
-                          </Td>
-                        </Tr>
+                                </Td>
+                              </Tr>
+                              <Tr>
+                                <Td colSpan={3} p="0px">
+                                  <Accordion allowToggle>
+                                    <AccordionItem bgColor="#FBFBFB">
+                                      <AccordionButton minH="50px">
+                                        <Box as="span" textAlign="left">
+                                          해설보기
+                                        </Box>
+                                        <AccordionIcon ml="10px" />
+                                      </AccordionButton>
+                                      <AccordionPanel p="20px">
+                                        <Text
+                                          whiteSpace="pre-line"
+                                          wordBreak="break-word"
+                                        >
+                                          {subItem.comment}
+                                        </Text>
+                                      </AccordionPanel>
+                                    </AccordionItem>
+                                  </Accordion>
+                                </Td>
+                              </Tr>
+                            </React.Fragment>
+                          );
+                        })}
                       </React.Fragment>
                     );
                   })}
@@ -292,4 +335,4 @@ function MethodologyTab({ data }: any) {
   );
 }
 
-export default MethodologyTab;
+export default Methodology14;

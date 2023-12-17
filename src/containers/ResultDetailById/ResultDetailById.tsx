@@ -24,13 +24,31 @@ import DoughnutChart from './_fragments/DoughnutChart';
 import ResultTable from './_fragments/ResultTable';
 import Sources from './_fragments/Sources';
 
+import { usePostDatabaseMutation } from 'apis/database/DatabaseApi.mutation';
+
 interface ResultDetailByIdProps extends ChakraProps {
   id?: string | string[];
 }
 
+const SELECT_13 = [
+  { gas: 0.011, oil: 0.011, van: 0.011, cargo: 0.011 },
+  { gas: 0.21, oil: 0.21, van: 0.21, cargo: 0.21 },
+  { gas: 0.02, oil: 0.02, van: 0.0165, cargo: 0.005 },
+  { gas: 0.05, oil: 0.05, van: 0.0177, cargo: 0.0394 },
+];
+
 function ResultDetailById({ id, ...basisProps }: ResultDetailByIdProps) {
+  const [profit, setProfit] = useState(0);
   const [params, setParams] = useState<any>([]);
   const [selectValue, setSelectValue] = useState<any>(0);
+
+  const { mutate } = usePostDatabaseMutation({
+    options: {
+      onSuccess(data) {
+        setProfit(data.results[0].properties['배출권 비율'].number);
+      },
+    },
+  });
 
   const Item = useMemo(() => {
     return id ? FORMULA.filter((item: any) => item.id === Number(id))[0] : null;
@@ -50,6 +68,14 @@ function ResultDetailById({ id, ...basisProps }: ResultDetailByIdProps) {
           value: Number(input.value),
         }),
       );
+    } else if (Item.id === 13) {
+      const selectElement = document.getElementById('select-box');
+      data = Array.from([...inputs, selectElement]).map((input: any, idx) => ({
+        id: Item.params[idx].id,
+        title: Item.params[idx].title,
+        unit: Item.params[idx].unit,
+        value: Number(input.value),
+      }));
     } else {
       data = Array.from(inputs).map((input, idx) => ({
         id: Item.params[idx].id,
@@ -69,6 +95,15 @@ function ResultDetailById({ id, ...basisProps }: ResultDetailByIdProps) {
       value: param.default,
     }));
     setParams(extractedData);
+    mutate({
+      id: 'e46790e874fc44cc8e221785d99fe8e1',
+      filter: {
+        property: 'id',
+        number: {
+          equals: 1,
+        },
+      },
+    });
   }, [id]);
 
   const reduction = useMemo(() => {
@@ -166,6 +201,66 @@ function ResultDetailById({ id, ...basisProps }: ResultDetailByIdProps) {
                   </Box>
                 );
               }
+              if (Item.id === 13 && p.id === 5) {
+                return (
+                  <Box key={idx} w="100%">
+                    <Flex mb="10px" alignItems="center">
+                      <Text fontSize="18px" fontWeight="bold">
+                        {p.title}
+                      </Text>
+                      <Text fontSize="14px" ml="10px">
+                        단위 : {p.unit}
+                      </Text>
+                    </Flex>
+                    <Select
+                      id="select-box"
+                      defaultValue={p.default}
+                      placeholder="유형 선택"
+                      bgColor="white"
+                      borderRadius="full"
+                      h="60px"
+                      onChange={(e) => setSelectValue(e.target.value)}
+                    >
+                      <option value={0}>타이어 저항 감소</option>
+                      <option value={1}>에어컨 시스템 개선</option>
+                      <option value={2}>저점도 엔진오일</option>
+                      <option value={3}>공기역학적 저항 감소</option>
+                    </Select>
+                    {selectValue > -1 && (
+                      <HStack justifyContent="flex-end">
+                        <Text mt="10px" fontSize="14px">
+                          승용(경유) :{' '}
+                          <Text as="span" fontSize="16px" fontWeight="bold">
+                            {SELECT_13[selectValue].gas}
+                          </Text>{' '}
+                          {p.unit}
+                        </Text>
+                        <Text mt="10px" fontSize="14px">
+                          승용(휘발유) :{' '}
+                          <Text as="span" fontSize="16px" fontWeight="bold">
+                            {SELECT_13[selectValue].oil}
+                          </Text>{' '}
+                          {p.unit}
+                        </Text>
+                        <Text mt="10px" fontSize="14px">
+                          승합 :{' '}
+                          <Text as="span" fontSize="16px" fontWeight="bold">
+                            {SELECT_13[selectValue].van}
+                          </Text>{' '}
+                          {p.unit}
+                        </Text>
+                        <Text mt="10px" fontSize="14px">
+                          화물 :{' '}
+                          <Text as="span" fontSize="16px" fontWeight="bold">
+                            {SELECT_13[selectValue].cargo}
+                          </Text>{' '}
+                          {p.unit}
+                        </Text>
+                      </HStack>
+                    )}
+                  </Box>
+                );
+              }
               return (
                 <Box key={idx} w="100%">
                   <Flex mb="10px" alignItems="center">
@@ -251,6 +346,19 @@ function ResultDetailById({ id, ...basisProps }: ResultDetailByIdProps) {
                 (tCO₂)
               </Text>
               <Text fontSize="24px" fontWeight="bold">
+                예상 배출권 수익
+              </Text>
+              <Text fontSize="18px" textAlign="center" mb="10px">
+                <Text as="span" fontSize="24px" fontWeight="bold">
+                  {reduction
+                    ? formatNumberKR(
+                        (Math.round(reduction * 1000) / 100) * profit,
+                      )
+                    : 0}
+                </Text>{' '}
+                (원)
+              </Text>
+              <Text fontSize="24px" fontWeight="bold">
                 국가 NDC
               </Text>
               <Text fontSize="18px">
@@ -291,6 +399,19 @@ function ResultDetailById({ id, ...basisProps }: ResultDetailByIdProps) {
                     : 0}
                 </Text>{' '}
                 (tCO₂)
+              </Text>
+              <Text fontSize="24px" fontWeight="bold">
+                예상 배출권 수익
+              </Text>
+              <Text fontSize="18px" textAlign="center" mb="10px">
+                <Text as="span" fontSize="24px" fontWeight="bold">
+                  {reduction
+                    ? formatNumberKR(
+                        (Math.round(reduction * 3000) / 100) * profit,
+                      )
+                    : 0}
+                </Text>{' '}
+                (원)
               </Text>
               <Text fontSize="24px" fontWeight="bold">
                 2050 탄소중립

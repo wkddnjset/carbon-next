@@ -1,3 +1,10 @@
+const SELECT_13 = [
+  { gas: 0.011, oil: 0.011, van: 0.011, cargo: 0.011 },
+  { gas: 0.21, oil: 0.21, van: 0.21, cargo: 0.21 },
+  { gas: 0.02, oil: 0.02, van: 0.0165, cargo: 0.005 },
+  { gas: 0.05, oil: 0.05, van: 0.0177, cargo: 0.0394 },
+];
+
 export const FORMULA: any = [
   {
     id: 1,
@@ -41,7 +48,7 @@ export const FORMULA: any = [
             ((12516 * 365 * Math.pow(10, -3) * params[0].value) / 2318763.24) *
               0.4591 +
             // 화석연료 사용에 따른 온실가스 배출량
-            params[1].value * 35.2 * 73.2 * Math.pow(10, 6) +
+            params[1].value * 35.2 * 73.2 * Math.pow(10, -6) +
             // 수송에 따른 온실가스 배출량
             ((282 * 24 * 365 * params[0].value) /
               2318763.24 /
@@ -56,7 +63,6 @@ export const FORMULA: any = [
               0.61 *
               0.0007156 *
               21 +
-            //
             ((282 * 24 * 365 * 96.5 * Math.pow(10, -2) * params[0].value) /
               2318763.24) *
               0.0000125 *
@@ -74,7 +80,7 @@ export const FORMULA: any = [
             (((12516 * 365 * Math.pow(10, -3) * params[0].value) / 2318763.24) *
               0.4591 +
               // 화석연료 사용에 따른 온실가스 배출량
-              params[1].value * 35.2 * 73.2 * Math.pow(10, 6) +
+              params[1].value * 35.2 * 73.2 * Math.pow(10, -6) +
               // 수송에 따른 온실가스 배출량
               ((282 * 24 * 365 * params[0].value) /
                 2318763.24 /
@@ -1728,8 +1734,9 @@ export const FORMULA: any = [
     params: [
       { id: 1, title: '경유 승용 차량 대수 ', unit: '대', default: 0 },
       { id: 2, title: '휘발유 승용 차량 대수', unit: '대', default: 0 },
-      { id: 4, title: '승합 차량 대수', unit: '대', default: 0 },
-      { id: 5, title: '화물 차량 대수', unit: '대', default: 0 },
+      { id: 3, title: '승합 차량 대수', unit: '대', default: 0 },
+      { id: 4, title: '화물 차량 대수', unit: '대', default: 0 },
+      { id: 5, title: '기술선택', unit: 'Nm³', default: 0 },
     ],
     result: [
       {
@@ -1771,22 +1778,31 @@ export const FORMULA: any = [
           return (
             // 승용차량 연평균 사업 배출량(경유)
             13018.3333333333 *
-              (0.075 * 35.2 * 73.2) *
+              ((0.079155672823219 / (1 + SELECT_13[params[4].value].gas)) *
+                35.2 *
+                73.2) *
               params[0].value *
               Math.pow(10, -6) +
             // 승용차량 연평균 사업 배출량(휘발유)
             13018.3333333333 *
-              (0.081 * 30.4 * 71.6) *
+              ((0.0852272727272727 / (1 + SELECT_13[params[4].value].oil)) *
+                30.4 *
+                71.6) *
               Math.pow(10, -6) *
               params[1].value +
             // 승합차량 연평균 사업 배출량
             19916.8333333333 *
-              (0.1 * 35.2 * 73.2) *
+              ((0.102040816326531 / (1 + SELECT_13[params[4].value].van)) *
+                35.2 *
+                73.2) *
               Math.pow(10, -6) *
               params[2].value +
             // 화물 차량 연평균 사업 배출량
             1352160 *
-              ((0.103 * 35.2 * 73.2) / 52.0) *
+              (((0.107142857142857 / (1 + SELECT_13[params[4].value].cargo)) *
+                35.2 *
+                73.2) /
+                52.0) *
               Math.pow(10, -6) *
               params[3].value
           );

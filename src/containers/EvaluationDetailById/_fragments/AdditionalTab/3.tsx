@@ -23,6 +23,7 @@ import {
 import { useEvaluationDetailPageContext } from '@/contexts/pages/evaluationDetail/useEvaluationDetailPageContext';
 
 import { DATA } from '@/constants/data';
+import isCorrectUtils from '@/utils/isCorrect';
 import isEqual from '@/utils/isEqual';
 
 const COLOR = ['red', 'orange', 'yellow'];
@@ -108,11 +109,15 @@ function Addition3() {
           </Thead>
           <Tbody borderBottomWidth="2px" borderColor="#CDCDCD">
             {data?.additional?.map((addition: any, idx: number) => {
-              const isCorrect =
+              let allNull = false;
+              let isCorrect =
                 result && isEqual(result[idx], collectResult[idx]);
               const isNull =
                 result && isEqual(collectResult[idx], nullResult[idx]);
-              const isTrue = result && isEqual(result[idx], trueResult[idx]);
+              if (isNull) {
+                isCorrect = result?.[idx] && isCorrectUtils(result[idx]);
+                allNull = result && isEqual(result[idx], collectResult[idx]);
+              }
               return (
                 <React.Fragment key={idx}>
                   {addition?.question?.map((item: any, item_idx: number) => {
@@ -251,17 +256,9 @@ function Addition3() {
                       <Text
                         fontWeight="bold"
                         textAlign="center"
-                        color={
-                          isCorrect || (isNull && isTrue) ? 'black' : 'red'
-                        }
+                        color={isCorrect ? 'black' : allNull ? 'black' : 'red'}
                       >
-                        {isCorrect
-                          ? isNull
-                            ? '해당없음'
-                            : '만족'
-                          : isNull && isTrue
-                          ? '만족'
-                          : '불만족'}
+                        {isCorrect ? '만족' : allNull ? '해당없음' : '불만족'}
                       </Text>
                     </Td>
                   </Tr>

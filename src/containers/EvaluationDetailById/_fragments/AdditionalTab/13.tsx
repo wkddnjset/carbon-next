@@ -114,7 +114,6 @@ function Addition13() {
                 result && isEqual(result[idx], collectResult[idx]);
               const isNull =
                 result && isEqual(collectResult[idx], nullResult[idx]);
-              const isTrue = result && isEqual(result[idx], trueResult[idx]);
               if (isNull) {
                 isCorrect = result?.[idx] && isCorrectUtils(result[idx]);
                 allNull = result && isEqual(result[idx], collectResult[idx]);

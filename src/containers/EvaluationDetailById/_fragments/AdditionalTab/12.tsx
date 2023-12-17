@@ -28,11 +28,11 @@ import isEqual from '@/utils/isEqual';
 
 const COLOR = ['red', 'orange', 'yellow'];
 
-function Addition6() {
+function Addition12() {
   const dispatch = useEvaluationDetailPageContext((ctx) => ctx.dispatch);
   const [result, setResult] = useState<any>([]);
 
-  const data: any = DATA.filter((item: any) => item.id === 6)[0];
+  const data: any = DATA.filter((item: any) => item.id === 12)[0];
 
   const handleSetResult = (idx: number, item_idx: number, value: any) => {
     const current = [...result];
@@ -129,7 +129,7 @@ function Addition6() {
                           {item_idx === 0 && (
                             <Td
                               bgColor={`${COLOR[idx]}.50`}
-                              rowSpan={addition?.question?.length + 2}
+                              rowSpan={idx === 0 ? 6 : 12}
                               whiteSpace="pre-line"
                               textAlign="center"
                             >
@@ -245,6 +245,44 @@ function Addition6() {
                             </VStack>
                           </Td>
                         </Tr>
+                        {item?.sub_item?.map((subItem: any, idx: number) => {
+                          return (
+                            <React.Fragment key={idx}>
+                              <Tr>
+                                <Td>{subItem.id}</Td>
+                                <Td>
+                                  <Text whiteSpace="pre-line">
+                                    {subItem.title}
+                                  </Text>
+                                </Td>
+                              </Tr>
+                              {subItem.comment && (
+                                <Tr>
+                                  <Td colSpan={3} p="0px">
+                                    <Accordion allowToggle>
+                                      <AccordionItem bgColor="#FBFBFB">
+                                        <AccordionButton minH="50px">
+                                          <Box as="span" textAlign="left">
+                                            해설보기
+                                          </Box>
+                                          <AccordionIcon ml="10px" />
+                                        </AccordionButton>
+                                        <AccordionPanel p="20px">
+                                          <Text
+                                            whiteSpace="pre-line"
+                                            wordBreak="break-word"
+                                          >
+                                            {subItem.comment}
+                                          </Text>
+                                        </AccordionPanel>
+                                      </AccordionItem>
+                                    </Accordion>
+                                  </Td>
+                                </Tr>
+                              )}
+                            </React.Fragment>
+                          );
+                        })}
                       </React.Fragment>
                     );
                   })}
@@ -299,4 +337,4 @@ function Addition6() {
   );
 }
 
-export default Addition6;
+export default Addition12;

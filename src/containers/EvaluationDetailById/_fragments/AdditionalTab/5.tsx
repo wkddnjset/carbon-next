@@ -28,11 +28,11 @@ import isEqual from '@/utils/isEqual';
 
 const COLOR = ['red', 'orange', 'yellow'];
 
-function Addition6() {
+function Addition5() {
   const dispatch = useEvaluationDetailPageContext((ctx) => ctx.dispatch);
   const [result, setResult] = useState<any>([]);
 
-  const data: any = DATA.filter((item: any) => item.id === 6)[0];
+  const data: any = DATA.filter((item: any) => item.id === 5)[0];
 
   const handleSetResult = (idx: number, item_idx: number, value: any) => {
     const current = [...result];
@@ -299,4 +299,4 @@ function Addition6() {
   );
 }
 
-export default Addition6;
+export default Addition5;

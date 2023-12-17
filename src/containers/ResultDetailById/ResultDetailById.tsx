@@ -208,9 +208,6 @@ function ResultDetailById({ id, ...basisProps }: ResultDetailByIdProps) {
                       <Text fontSize="18px" fontWeight="bold">
                         {p.title}
                       </Text>
-                      <Text fontSize="14px" ml="10px">
-                        단위 : {p.unit}
-                      </Text>
                     </Flex>
                     <Select
                       id="select-box"
@@ -232,29 +229,25 @@ function ResultDetailById({ id, ...basisProps }: ResultDetailByIdProps) {
                           승용(경유) :{' '}
                           <Text as="span" fontSize="16px" fontWeight="bold">
                             {SELECT_13[selectValue].gas}
-                          </Text>{' '}
-                          {p.unit}
+                          </Text>
                         </Text>
                         <Text mt="10px" fontSize="14px">
                           승용(휘발유) :{' '}
                           <Text as="span" fontSize="16px" fontWeight="bold">
                             {SELECT_13[selectValue].oil}
-                          </Text>{' '}
-                          {p.unit}
+                          </Text>
                         </Text>
                         <Text mt="10px" fontSize="14px">
                           승합 :{' '}
                           <Text as="span" fontSize="16px" fontWeight="bold">
                             {SELECT_13[selectValue].van}
-                          </Text>{' '}
-                          {p.unit}
+                          </Text>
                         </Text>
                         <Text mt="10px" fontSize="14px">
                           화물 :{' '}
                           <Text as="span" fontSize="16px" fontWeight="bold">
                             {SELECT_13[selectValue].cargo}
-                          </Text>{' '}
-                          {p.unit}
+                          </Text>
                         </Text>
                       </HStack>
                     )}

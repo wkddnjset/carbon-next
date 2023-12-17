@@ -889,7 +889,11 @@ export const FORMULA: any = [
         unit: 'tCO₂-eq/년',
         formula: (params: any) => {
           console.log(params);
-          return 82351.3208692185 * 0.0033;
+          return (
+            (147.935606060606 * params[0].value +
+              82203.3852631579 * params[1].value) *
+            0.0033
+          );
         },
       },
       {
@@ -973,7 +977,9 @@ export const FORMULA: any = [
                 Math.pow(0.99, 10) *
                 params[1].value) /
               10 -
-            82351.3208692185 * 0.0033
+            (147.935606060606 * params[0].value +
+              82203.3852631579 * params[1].value) *
+              0.0033
           );
         },
       },
@@ -1204,8 +1210,16 @@ export const FORMULA: any = [
         unit: 'tCO₂-eq/년',
         formula: (params: any) => {
           return (
-            1475393 * 0.107142857142857 * 35.2 * 73.2 * Math.pow(10, -6) +
-            13500 * 0.129310344827586 * 58.4 * 64.0 * Math.pow(10, -6) +
+            ((1475393 * params[0].value) / 43536926) *
+              0.107142857142857 *
+              35.2 *
+              73.2 *
+              Math.pow(10, -6) +
+            ((13500 * params[1].value) / 43536926) *
+              0.129310344827586 *
+              58.4 *
+              64.0 *
+              Math.pow(10, -6) +
             params[1].value * 0.015 * 0.4591 * Math.pow(10, -3)
           );
         },
@@ -1645,7 +1659,7 @@ export const FORMULA: any = [
         id: 3,
         title: 'CNG 운송용 트럭 평균 용량',
         unit: 'km/Truck',
-        default: 0,
+        default: 1,
       },
       { id: 4, title: 'CNG 운송거리', unit: 'Nm³/년', default: 0 },
     ],
@@ -2106,7 +2120,10 @@ export const FORMULA: any = [
         formula: (params: any) => {
           console.log(params);
           return (
-            (0.212615166548547 * 0.45941 * Math.pow(10, -3) * 18000) /
+            (0.212615166548547 *
+              0.45941 *
+              Math.pow(10, -3) *
+              (params[0].value + params[1].value + params[2].value)) /
             0.212615166548547
           );
         },
@@ -2334,7 +2351,10 @@ export const FORMULA: any = [
                 0.212615166548547) *
                 Math.pow(10, -6)) /
               10 -
-            (0.212615166548547 * 0.45941 * Math.pow(10, -3) * 18000) /
+            (0.212615166548547 *
+              0.45941 *
+              Math.pow(10, -3) *
+              (params[0].value + params[1].value + params[2].value)) /
               0.212615166548547
           );
         },
